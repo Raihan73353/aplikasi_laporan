@@ -14,8 +14,8 @@ class peternakan extends Model
         'noHp',
     ];
 
-    public function laporans()
+    public function priodes()
     {
-        return $this->hasMany(Laporan::class, 'peternakan_id');
+        return $this->hasMany(priode::class, 'id_peternakan');
     }
 }

@@ -50,8 +50,8 @@ class laporan extends Model
     //     return $this->belongsTo(petuga::class, 'petugas_id');
     // }
 
-    public function peternakan()
+    public function priode()
     {
-        return $this->belongsTo(peternakan::class, 'peternakan_id');
+        return $this->belongsTo(priode::class, 'peternakan_id');
     }
 }
