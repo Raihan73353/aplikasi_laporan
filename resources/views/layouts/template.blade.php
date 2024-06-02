@@ -78,7 +78,7 @@
                             alt="User Image">
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block">Safrizal</a>
+                        <a href="#" class="d-block">{{ Auth::user()->email }}</a>
                     </div>
                 </div>
 
@@ -111,7 +111,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('priode.index')}}" class="nav-link {{ ($title==='Dashboard')?'active':'' }}">
+                            <a href="{{route('priode.index')}}" class="nav-link {{ ($title==='priode')?'active':'' }}">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>
                                     priode
@@ -121,7 +121,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a href="{{ route('pengguna.index')}}" class="nav-link {{ ($title==='Users')?'active':''}}">
+                            <a href="{{ route('pengguna.index')}}" class="nav-link {{ ($title==='Data Pengguna')?'active':''}}">
                                 <i class="nav-icon fas fa-users"></i>
                                 <p>
                                     Users

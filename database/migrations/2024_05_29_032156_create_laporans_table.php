@@ -16,7 +16,6 @@ return new class extends Migration
             $table->unsignedBigInteger('petugas_id');
             $table->integer('mdd_ci');
             $table->unsignedBigInteger('priode_id');
-            $table->text('map');
             $table->date('tgl_ci');
             $table->integer('pop_e');
             $table->integer('bw_doc');

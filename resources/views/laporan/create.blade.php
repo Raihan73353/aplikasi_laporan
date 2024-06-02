@@ -36,10 +36,10 @@
                     {{-- <label for="peternakan_id">Peternakan ID</label> --}}
                     <input type="hidden" class="form-control" id="peternakan_id" name="peternakan_id" value="{{ $peternakan_id }}" readonly required>
                 </div>
-                <div class="form-group">
+                {{-- <div class="form-group">
                     <label for="map">Map</label>
                     <input type="text" class="form-control" id="map" name="map" required>
-                </div>
+                </div> --}}
                 <div class="form-group">
                     <label for="tgl_ci">Tanggal CI</label>
                     <input type="date" class="form-control" id="tgl_ci" name="tgl_ci" required>

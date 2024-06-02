@@ -24,7 +24,8 @@ class UserController extends Controller
     public function store(Request $request):RedirectResponse{
         $request->validate([
             "name"=>"required",
-            "email"=>"email:dns",
+            "email"=>"required",
+            "username"=>"required",
             "role"=>"required",
             "password"=>"required"
         ]);
