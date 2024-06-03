@@ -137,6 +137,22 @@
                                 </p>
                             </a>
                         </li>
+                        {{-- <li class="nav-item">
+                            <a href="{{route('fcr.create')}}" class="nav-link {{ ($title==='laporan') ? 'active':'' }}">
+                                <i class="nav-icon fas fa-cash-register"></i>
+                                <p>
+                                    fcr
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('pbbh.create')}}" class="nav-link {{ ($title==='laporan') ? 'active':'' }}">
+                                <i class="nav-icon fas fa-cash-register"></i>
+                                <p>
+                                    pbbh
+                                </p>
+                            </a>
+                        </li> --}}
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->

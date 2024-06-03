@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('fcrs', function (Blueprint $table) {
             $table->id();
-            $table->double('bw',10,2);
-            $table->double('fcr',10,2);
+            $table->double('bw',10,3);
+            $table->double('fcr',10,3);
             $table->double('mor',10,2);
             $table->timestamps();
         });

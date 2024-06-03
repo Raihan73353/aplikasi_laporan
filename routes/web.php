@@ -6,6 +6,8 @@ use App\Http\Controllers\petugasController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\priodeController;
+use App\Http\Controllers\fcrController;
+use App\Http\Controllers\pbbhController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,3 +39,9 @@ Route::post('logout',[LoginController::class,'logout'])->middleware('auth');
 Route::resource('priode',priodeController::class)->middleware('auth');
 Route::get('/priode/create/{id}', [priodeController::class, 'create'])->name('priode.create')->middleware('auth');
 Route::post('/priode/store/{id}', [priodeController::class, 'store'])->name('priode.store')->middleware('auth');
+
+route::get('/fcr', [fcrController::class, 'create'])->name('fcr.create');
+route::post('/fcr', [fcrController::class, 'store'])->name('fcr.store');
+route::get('/pbbh', [pbbhController::class, 'create'])->name('pbbh.create');
+route::post('/pbbh', [pbbhController::class, 'store'])->name('pbbh.store');
+
