@@ -9,6 +9,7 @@ use App\Http\Controllers\priodeController;
 use App\Http\Controllers\fcrController;
 use App\Http\Controllers\pbbhController;
 use Illuminate\Support\Facades\Route;
+use App\Livewire\inputData;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,8 +30,8 @@ Route::get('/', function () {
 Route::resource('pengguna',UserController::class)->except('destroy','show','update','edit')->middleware('auth');
 Route::resource('peternakan',peternakanController::class)->middleware('auth');
 Route::resource('laporan',LaporanController::class)->middleware('auth');
-Route::get('/laporan/create/{id}', [LaporanController::class, 'create'])->name('laporan.create')->middleware('auth');
-Route::post('/laporan/store/{id}', [LaporanController::class, 'store'])->name('laporan.store')->middleware('auth');
+// Route::get('/laporan/create/{id}', [LaporanController::class, 'create'])->name('laporan.create')->middleware('auth');
+// Route::post('/laporan/store/{id}', [LaporanController::class, 'store'])->name('laporan.store')->middleware('auth');
 
 Route::resource('petugas',petugasController::class)->middleware('auth');
 Route::get('login',[LoginController::class,'loginView'])->name('login');
@@ -40,8 +41,11 @@ Route::resource('priode',priodeController::class)->middleware('auth');
 Route::get('/priode/create/{id}', [priodeController::class, 'create'])->name('priode.create')->middleware('auth');
 Route::post('/priode/store/{id}', [priodeController::class, 'store'])->name('priode.store')->middleware('auth');
 
-route::get('/fcr', [fcrController::class, 'create'])->name('fcr.create');
-route::post('/fcr', [fcrController::class, 'store'])->name('fcr.store');
-route::get('/pbbh', [pbbhController::class, 'create'])->name('pbbh.create');
-route::post('/pbbh', [pbbhController::class, 'store'])->name('pbbh.store');
+// route::get('/fcr', [fcrController::class, 'create'])->name('fcr.create');
+// route::post('/fcr', [fcrController::class, 'store'])->name('fcr.store');
+// route::get('/pbbh', [pbbhController::class, 'create'])->name('pbbh.create');
+// route::post('/pbbh', [pbbhController::class, 'store'])->name('pbbh.store');
+
+
+Route::get('laporan/create/{priode_id}', inputData::class)->name('laporan.create')->middleware('auth');
 

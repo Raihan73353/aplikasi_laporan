@@ -21,7 +21,7 @@
         </div>
         <!-- /.card-header -->
         <!-- form start -->
-        <form action="{{ route('laporan.store', $peternakan_id) }}" method="POST">
+        <form action="{{ route('laporan.store', $priode_id) }}" method="POST">
             @csrf
             <div class="card-body">
                 <div class="form-group">
@@ -33,8 +33,8 @@
                     <input type="number" class="form-control" id="mdd_ci" name="mdd_ci" required>
                 </div>
                 <div class="form-group">
-                    {{-- <label for="peternakan_id">Peternakan ID</label> --}}
-                    <input type="hidden" class="form-control" id="peternakan_id" name="peternakan_id" value="{{ $peternakan_id }}" readonly required>
+                    {{-- <label for="priode_id">Peternakan ID</label> --}}
+                    <input type="hidden" class="form-control" id="priode_id" name="priode_id" value="{{ $priode_id }}" readonly required>
                 </div>
                 {{-- <div class="form-group">
                     <label for="map">Map</label>

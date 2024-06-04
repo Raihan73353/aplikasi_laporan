@@ -23,12 +23,12 @@
                 <div class="peternakan">
                     <h4>{{ $peternakan->nama }}</h4>
                     @foreach ($priode as $p)
-                        @if ($p->id_peternakan == $peternakan->id)
-                            <a type="button" class="btn btn-warning" href="{{ route('laporan.create', $p->id) }}">
-                                + Laporan (Priode ID: {{ $p->id }})
-                            </a>
-                        @endif
-                    @endforeach
+                    @if ($p->id_peternakan == $peternakan->id)
+                        <a type="button" class="btn btn-warning" href="{{ route('laporan.create', $p->id) }}">
+                            + Laporan (Priode ID: {{ $p->id }})
+                        </a>
+                    @endif
+                @endforeach
                 </div>
             @endforeach
         </div>

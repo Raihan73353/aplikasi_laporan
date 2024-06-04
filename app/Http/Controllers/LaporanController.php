@@ -19,7 +19,7 @@ class LaporanController extends Controller
 
     }
     public function create($id){
-        return view('laporan.create', ["title" => "Tambah Laporan", "peternakan_id" => $id]);
+        return view('laporan.create', ["title" => "Tambah Laporan", "priode_id" => $id]);
     }
 
     public function store(Request $request, $id)
@@ -27,8 +27,7 @@ class LaporanController extends Controller
     $validator = Validator::make($request->all(), [
         'petugas_id' => 'required',
         'mdd_ci' => 'required',
-        'peternakan_id' => 'required',
-        'map' => 'required',
+        'priode_id' => 'required',
         'tgl_ci' => 'required',
         'pop_e' => 'required',
         'bw_doc' => 'required',
@@ -69,7 +68,7 @@ $petugas_id = Auth::id();
     Laporan::create([
     'petugas_id' => $petugas_id,
     'mdd_ci' => $request->mdd_ci,
-    'peternakan_id' => $id,
+    'priode_id' => $id,
     'map' => $request->map,
     'tgl_ci' => $request->tgl_ci,
     'pop_e' => $request->pop_e,

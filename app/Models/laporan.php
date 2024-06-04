@@ -11,8 +11,7 @@ class laporan extends Model
     protected $fillable = [
         'petugas_id',
         'mdd_ci',
-        'peternakan_id',
-        'map',
+        'priode_id',
         'tgl_ci',
         'pop_e',
         'bw_doc',

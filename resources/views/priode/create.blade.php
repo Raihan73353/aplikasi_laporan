@@ -1,5 +1,5 @@
 @extends('layouts.template')
-@section('judulh1','Admin - peternakan')
+@section('judulh1','Admin - tambah priode')
 
 @section('konten')
 <div class="col-md-6">

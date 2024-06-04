@@ -15,7 +15,7 @@
         <div class="card card-info">
             <div class="card-header">
                 <h2 class="card-title">Data Laporan</h2>
-                
+
             </div>
             <!-- /.card-header -->
 
@@ -26,8 +26,7 @@
                             <th>No</th>
                             <th>Petugas ID</th>
                             <th>MDD CI</th>
-                            <th>Peternakan ID</th>
-                            <th>Map</th>
+                            <th>priode peternakan</th>
                             <th>Tgl CI</th>
                             <th>Pop E</th>
                             <th>BW DOC</th>
@@ -68,8 +67,7 @@
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $dt->petugas_id }}</td>
                                 <td>{{ $dt->mdd_ci }}</td>
-                                <td>{{ $dt->peternakan_id }}</td>
-                                <td>{{ $dt->map }}</td>
+                                <td>{{ $dt->priode_id }}</td>
                                 <td>{{ $dt->tgl_ci }}</td>
                                 <td>{{ $dt->pop_e }}</td>
                                 <td>{{ $dt->bw_doc }}</td>
