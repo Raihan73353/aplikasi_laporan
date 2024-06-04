@@ -28,6 +28,10 @@
                     <input type="text" class="form-control" id="name" name="name" placeholder=" Nama Lengkap" required value="{{ old('name') }}">
                 </div>
                 <div class="form-group">
+                    <label for="username">username</label>
+                    <input type="text" class="form-control" id="username" name="username" placeholder=" Nama Lengkap" required value="{{ old('username') }}">
+                </div>
+                <div class="form-group">
                     <label for="email">Email</label>
                     <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" placeholder="JohnDoe@example.com" required value="{{ old('email') }}">
                     @error('email')
