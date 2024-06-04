@@ -33,7 +33,6 @@ class UserController extends Controller
         $request->merge([
             "password"=>$password
         ]);
-
         User::create($request->all());
 
         return redirect()->route('pengguna.index')->with('success','Data User Berhasil Ditambahkan');

@@ -5,7 +5,7 @@
                 {{ session('success') }}
             </div>
         @endif
-
+        
         <form wire:submit.prevent="submit">
             <div class="card-body">
                 <div class="form-group">
@@ -150,3 +150,4 @@
     </div>
 
 </div>
+ 
