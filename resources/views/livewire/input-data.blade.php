@@ -90,11 +90,11 @@
                 @elseif($currentStep===3)
                 <div class="form-group">
                     <label for="std_fcr">Std FCR</label>
-                    <input type="number" step="0.01" class="form-control" id="std_fcr" name="std_fcr" wire:model.live="std_fcr" required>
+                    <input type="number" step="0.01" class="form-control" id="std_fcr" name="std_fcr" wire:model.live="std_fcr" required disabled>
                 </div>
                 <div class="form-group">
                     <label for="dif">Dif</label>
-                    <input type="number" step="0.01" class="form-control" id="dif" name="dif" wire:model.live="dif" required>
+                    <input type="number" step="0.01" class="form-control" id="dif" name="dif" wire:model.live="dif" required disabled>
                 </div>
                 <div class="form-group">
                     <label for="pbbh">PBBH</label>
