@@ -2,6 +2,8 @@
 
 namespace App\Livewire;
 
+use DateTime;
+use App\Models\fcr;
 use App\Models\laporan;
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
@@ -9,6 +11,8 @@ use Illuminate\Support\Facades\Validator;
 
 class InputData extends Component
 {
+    public $currentStep=1;
+    public $totalStep=4;
     public $priode_id;
     public $petugas_id;
     public $mdd_ci;
@@ -43,17 +47,52 @@ class InputData extends Component
     public $treatment_ovk;
     public $kondisi;
     public $saran;
+    
+        public function render()
+        {
+
+            
+          
+                $this->terpakai=$this->tkp_sak - $this->sp_sak;
+                $tanggalSekarang=new DateTime('now');
+                $newTglCI=new DateTime($this->tgl_ci);
+                $umur=date_diff($tanggalSekarang,$newTglCI);
+                $this->umur=$umur->days;
+                if ($this->mor_e!=0){
+
+                    $this->mor=$this->mor_e/$this->pop_e*100;
+                    $this->ayam_hidup=$this->pop_e-$this->mor_e;
+                    $this->fi=$this->terpakai*50/$this->ayam_hidup;
+                    $this->act_fcr=$this->fi/$this->bw;
+                    $bulat=floor($this->bw*100)/100;
+                    $std_fcr=fcr::where('bw','>=',$bulat)
+                                                    ->select('fcr')
+                                                    ->orderBy('bw')
+                                                    ->limit(1)
+                                                    ->first();
+                    
+                    $this->std_fcr=$std_fcr['fcr'];
+                    $this->dif=round($this->act_fcr-$this->std_fcr,3);
+                }
+             
+               
+            
+           
+            // dd($bulat);
+            return view('livewire.input-data', [
+                'title' => 'Tambah Laporan',
+            ]);
+        }
 
     public function mount($priode_id)
     {
         $this->priode_id = $priode_id;
         $this->petugas_id = Auth::id();
-    }
+    } 
 
     public function submit()
     {
-        $validator = Validator::make($this->validate(), [
-            'petugas_id' => 'required',
+        $this->validate([
             'mdd_ci' => 'required',
             'priode_id' => 'required',
             'tgl_ci' => 'required',
@@ -88,11 +127,6 @@ class InputData extends Component
             'kondisi' => 'required',
             'saran' => 'required'
         ]);
-
-        if ($validator->fails()) {
-            $this->emit('validationError', $validator->errors()->all());
-            return;
-        }
 
         laporan::create([
             'petugas_id' => $this->petugas_id,
@@ -134,10 +168,15 @@ class InputData extends Component
         return redirect()->route('petugas.index')->with('success', 'Laporan berhasil ditambahkan');
     }
 
-    public function render()
-    {
-        return view('livewire.input-data', [
-            'title' => 'Tambah Laporan',
-        ]);
+    public function incrementStep(){
+        if($this->currentStep<$this->totalStep){
+            $this->currentStep +=1;
+        }
+    }
+
+    public function decrementStep(){
+        if($this->currentStep>1){
+            $this->currentStep -=1;
+        }
     }
 }
