@@ -43,12 +43,12 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="tkp_sak">TKP Sak</label>
+                    <label for="tkp_sak">TKP/Sak</label>
                     <input type="number" class="form-control" id="tkp_sak" name="tkp_sak" wire:model="tkp_sak" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="sp_sak">SP Sak</label>
+                    <label for="sp_sak">SP/Sak</label>
                     <input type="number" class="form-control" id="sp_sak" name="sp_sak" wire:model="sp_sak" required>
                 </div>
                 <!-- end step 1 -->
@@ -62,11 +62,11 @@
                     <input type="text" class="form-control" id="umur" name="umur" wire:model.live="umur" required disabled>
                 </div>
                 <div class="form-group">
-                    <label for="mor_e">Mor E</label>
+                    <label for="mor_e">Mor/E</label>
                     <input type="number" class="form-control" id="mor_e" name="mor_e" wire:model.live="mor_e" required>
                 </div>
                 <div class="form-group">
-                    <label for="mor">Mor %</label>
+                    <label for="mor">Mor/%</label>
                     <input type="number" class="form-control" id="mor" name="mor" wire:model.live="mor" required disabled @if($mor>3){ style="color:red;"} @endif>
                 </div>
                 <div class="form-group">

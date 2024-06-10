@@ -75,7 +75,7 @@ class InputData extends Component
                     $this->std_fcr=$std_fcr['fcr'];
                     $this->dif=round($this->act_fcr-$this->std_fcr,3);
                 }
-                //std_pbh
+                //std_pbbh
                 $pbbh_record = Pbbh::where('umur', '>=', $this->umur)
                 ->select('pbbh')
                 ->orderBy('umur')
@@ -87,6 +87,15 @@ class InputData extends Component
             } else {
                 $this->std_pbbh = null;
             }
+            //std eph
+            $eph_record = Pbbh::where('umur', '>=', $this->umur)
+                ->select('eph')
+                ->orderBy('umur')
+                ->limit(1)
+                ->first();
+
+                $this->std_eph = $eph_record ? $eph_record->eph : null;
+                
             //progres
             if ($this->pbbh !== null && $this->std_pbbh !== null) {
                 $this->progres = $this->pbbh - $this->std_pbbh;
