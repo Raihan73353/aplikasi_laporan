@@ -5,6 +5,7 @@ namespace App\Livewire;
 use DateTime;
 use App\Models\fcr;
 use App\Models\laporan;
+use App\Models\pbbh;
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -47,12 +48,12 @@ class InputData extends Component
     public $treatment_ovk;
     public $kondisi;
     public $saran;
-    
+
         public function render()
         {
 
-            
-          
+
+
                 $this->terpakai=$this->tkp_sak - $this->sp_sak;
                 $tanggalSekarang=new DateTime('now');
                 $newTglCI=new DateTime($this->tgl_ci);
@@ -70,14 +71,44 @@ class InputData extends Component
                                                     ->orderBy('bw')
                                                     ->limit(1)
                                                     ->first();
-                    
+
                     $this->std_fcr=$std_fcr['fcr'];
                     $this->dif=round($this->act_fcr-$this->std_fcr,3);
                 }
-             
-               
-            
-           
+                //std_pbh
+                $pbbh_record = Pbbh::where('umur', '>=', $this->umur)
+                ->select('pbbh')
+                ->orderBy('umur')
+                ->limit(1)
+                ->first();
+
+            if ($pbbh_record) {
+                $this->std_pbbh = $pbbh_record->pbbh;
+            } else {
+                $this->std_pbbh = null;
+            }
+            //progres
+            if ($this->pbbh !== null && $this->std_pbbh !== null) {
+                $this->progres = $this->pbbh - $this->std_pbbh;
+            } else {
+                $this->progres = null;
+            }
+            //ep
+            if ($this->bw !== null && $this->fi !== null) {
+                $this->ep = round($this->bw / $this->fi * 100, 3);
+            } else {
+                $this->ep = null;
+            }
+            //progres2
+            // if ($this->ep !== null && $this->fi !== null) {
+            //     $this->progres = round($this->bw / $this->std_pbbh);
+            // } else {
+            //     $this->progres = null;
+            // }
+
+
+
+
             // dd($bulat);
             return view('livewire.input-data', [
                 'title' => 'Tambah Laporan',
@@ -88,7 +119,7 @@ class InputData extends Component
     {
         $this->priode_id = $priode_id;
         $this->petugas_id = Auth::id();
-    } 
+    }
 
     public function submit()
     {
