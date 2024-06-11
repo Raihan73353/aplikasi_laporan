@@ -38,6 +38,7 @@ return new class extends Migration
             $table->integer('progres');
             $table->integer('ep');
             $table->integer('std_eph');
+            $table->integer('progres2');
             $table->integer('suhu');
             $table->integer('rh');
             $table->integer('hi');

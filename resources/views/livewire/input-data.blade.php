@@ -117,6 +117,10 @@
                     <input type="number" class="form-control" id="std_eph" name="std_eph" wire:model.live="std_eph" required>
                 </div>
                 <div class="form-group">
+                    <label for="progres2">progres 2</label>
+                    <input type="number" class="form-control" id="progres2" name="progres2" wire:model.live="progres2" required>
+                </div>
+                <div class="form-group">
                     <label for="suhu">Suhu</label>
                     <input type="number" class="form-control" id="suhu" name="suhu" wire:model.live="suhu" required>
                 </div>

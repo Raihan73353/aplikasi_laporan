@@ -34,6 +34,7 @@ class laporan extends Model
         'progres',
         'ep',
         'std_eph',
+        'progres2',
         'suhu',
         'rh',
         'hi',

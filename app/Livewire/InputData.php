@@ -39,6 +39,7 @@ class InputData extends Component
     public $progres;
     public $ep;
     public $std_eph;
+    public $progres2;
     public $suhu;
     public $rh;
     public $hi;
@@ -95,7 +96,7 @@ class InputData extends Component
                 ->first();
 
                 $this->std_eph = $eph_record ? $eph_record->eph : null;
-                
+
             //progres
             if ($this->pbbh !== null && $this->std_pbbh !== null) {
                 $this->progres = $this->pbbh - $this->std_pbbh;
@@ -109,11 +110,15 @@ class InputData extends Component
                 $this->ep = null;
             }
             //progres2
-            // if ($this->ep !== null && $this->fi !== null) {
-            //     $this->progres = round($this->bw / $this->std_pbbh);
-            // } else {
-            //     $this->progres = null;
-            // }
+            if ($this->ep !== null && $this->std_eph !== null) {
+                $this->progres2 = round($this->ep - $this->std_eph);
+            } else {
+                $this->progres = null;
+            }
+            //hi
+            $farenheit = floor(($this->suhu * 9/5) + 32);
+            $hi = $farenheit+$this->rh;
+            $this->hi = $hi;
 
 
 
