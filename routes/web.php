@@ -27,7 +27,8 @@ Route::get('/', function () {
         "title"=>"Dashboard"
     ]);
 })->middleware('auth');
-Route::resource('pengguna',UserController::class)->except('destroy','show','update','edit')->middleware('auth');
+Route::resource('pengguna',UserController::class)->middleware('auth');
+Route::resource('user', UserController::class);
 Route::resource('peternakan',peternakanController::class)->middleware('auth');
 Route::resource('laporan',LaporanController::class)->middleware('auth');
 // Route::get('/laporan/create/{id}', [LaporanController::class, 'create'])->name('laporan.create')->middleware('auth');

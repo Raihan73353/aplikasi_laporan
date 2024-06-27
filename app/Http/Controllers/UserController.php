@@ -37,4 +37,23 @@ class UserController extends Controller
 
         return redirect()->route('pengguna.index')->with('success','Data User Berhasil Ditambahkan');
     }
+    public function edit(User $user): View
+    {
+        return view('user.edit', compact('user'))->with([
+            'title' => 'Ubah Data Pengguna',
+        ]);
+    }
+
+    public function update(Request $request, User $user): RedirectResponse
+    {
+        $request->validate([
+            'password' => 'required',
+        ]);
+        $password=Hash::make($request->password);
+        $request->merge([
+            "password"=>$password
+        ]);
+        $user->update($request->only(['password']));
+        return redirect()->route('user.index')->with('updated', 'Data Pengguna Berhasil Diubah');
+    }
 }

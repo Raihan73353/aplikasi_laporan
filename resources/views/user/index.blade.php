@@ -32,6 +32,7 @@
                         <th>username </th>
                         <th>Email</th>
                         <th>role</th>
+                        <th>aksi</th>
 
                     </tr>
                 </thead>
@@ -44,6 +45,13 @@
                         <td>{{ $dt->username }}</td>
                         <td>{{ $dt->email }}</td>
                         <td>{{ $dt->role }}</td>
+                        <td>
+                            <div class="btn-group">
+                                <a type="button" class="btn btn-warning ml-2" href="{{ route('user.edit', $dt->id) }}">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                            </div>
+                        </td>
                     </tr>
 
                     @endforeach
