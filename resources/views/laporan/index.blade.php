@@ -15,8 +15,8 @@
         <div class="card card-info">
             <div class="card-header">
                 <h2 class="card-title">Data Laporan</h2>
-                <a href="{{ url('export-laporan') }}" class="btn btn-success">
-                    <i class="fas fa-file-excel"></i> Export to Excel
+                <a type="button" class="btn btn-success float-right" href="{{ url('export-laporan') }}">
+                   <i class="fas fa-file-excel"></i> Export to Excel
                 </a>
             </div>
             <!-- /.card-header -->

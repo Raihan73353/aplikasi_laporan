@@ -60,22 +60,21 @@ class InputData extends Component
                 $newTglCI=new DateTime($this->tgl_ci);
                 $umur=date_diff($tanggalSekarang,$newTglCI);
                 $this->umur=$umur->days;
-                if ($this->mor_e!=0){
-
-                    $this->mor=$this->mor_e/$this->pop_e*100;
-                    $this->ayam_hidup=$this->pop_e-$this->mor_e;
-                    $this->fi=$this->terpakai*50/$this->ayam_hidup;
-                    $this->act_fcr=$this->fi/$this->bw;
-                    $bulat=floor($this->bw*100)/100;
-                    $std_fcr=fcr::where('bw','>=',$bulat)
-                                                    ->select('fcr')
-                                                    ->orderBy('bw')
-                                                    ->limit(1)
-                                                    ->first();
-
-                    $this->std_fcr=$std_fcr['fcr'];
-                    $this->dif=round($this->act_fcr-$this->std_fcr,3);
+                if ($this->mor_e != 0 && $this->bw != 0) {
+                    $this->mor = $this->mor_e / $this->pop_e * 100;
+                    $this->ayam_hidup = $this->pop_e - $this->mor_e;
+                    $this->fi = $this->terpakai * 50 / $this->ayam_hidup;
+                    $this->act_fcr = $this->fi / $this->bw;
+                    $bulat = floor($this->bw * 100) / 100;
+                    $std_fcr = fcr::where('bw', '>=', $bulat)
+                                   ->select('fcr')
+                                   ->orderBy('bw')
+                                   ->limit(1)
+                                   ->first();
+                    $this->std_fcr = $std_fcr['fcr'];
+                    $this->dif = round($this->act_fcr - $this->std_fcr, 3);
                 }
+
                 //std_pbbh
                 $pbbh_record = Pbbh::where('umur', '>=', $this->umur)
                 ->select('pbbh')

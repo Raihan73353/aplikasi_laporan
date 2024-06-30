@@ -13,7 +13,7 @@ class LaporanExport implements FromCollection, WithHeadings
      */
     public function collection()
     {
-        return laporan::all(); // Ambil semua data dari model
+        return laporan::all();
     }
 
     public function headings(): array
