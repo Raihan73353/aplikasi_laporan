@@ -26,7 +26,7 @@ return new class extends Migration
             $table->integer('terpakai');
             $table->integer('umur');
             $table->integer('mor_e');
-            $table->double('mor',8,3);
+            $table->double('mor',8,2);
             $table->integer('ayam_hidup');
             $table->double('bw', 8, 3);
             $table->double('fi', 8, 3);
