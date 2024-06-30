@@ -129,6 +129,10 @@
                     <input type="number" class="form-control" id="std_eph" name="std_eph" required>
                 </div>
                 <div class="form-group">
+                    <label for="progres2">progres 2 </label>
+                    <input type="text" class="form-control" id="progres2" name="progres2" required>
+                </div>
+                <div class="form-group">
                     <label for="suhu">Suhu</label>
                     <input type="number" class="form-control" id="suhu" name="suhu" required>
                 </div>
@@ -142,15 +146,15 @@
                 </div>
                 <div class="form-group">
                     <label for="kepadatan">Kepadatan</label>
-                    <input type="number" class="form-control" id="kepadatan" name="kepadatan" required>
+                    <input type="text" class="form-control" id="kepadatan" name="kepadatan" required>
                 </div>
                 <div class="form-group">
                     <label for="tra">TRA</label>
-                    <input type="number" class="form-control" id="tra" name="tra" required>
+                    <input type="text" class="form-control" id="tra" name="tra" required>
                 </div>
                 <div class="form-group">
                     <label for="tma">TMA</label>
-                    <input type="number" class="form-control" id="tma" name="tma" required>
+                    <input type="text" class="form-control" id="tma" name="tma" required>
                 </div>
                 <div class="form-group">
                     <label for="treatment_ovk">Treatment OVK</label>

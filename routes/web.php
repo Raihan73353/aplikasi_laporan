@@ -10,6 +10,9 @@ use App\Http\Controllers\fcrController;
 use App\Http\Controllers\pbbhController;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\inputData;
+use App\Http\Controllers\ExportController;
+use App\Exports\LaporanExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,11 +25,7 @@ use App\Livewire\inputData;
 |
 */
 
-Route::get('/', function () {
-    return view('dashboard',[
-        "title"=>"Dashboard"
-    ]);
-})->middleware('auth');
+Route::get('/',[LoginController::class,'loginView']);
 Route::resource('pengguna',UserController::class)->middleware('auth');
 Route::resource('user', UserController::class);
 Route::resource('peternakan',peternakanController::class)->middleware('auth');
@@ -50,3 +49,6 @@ Route::post('/priode/store/{id}', [priodeController::class, 'store'])->name('pri
 
 Route::get('laporan/create/{priode_id}', inputData::class)->name('laporan.create')->middleware('auth');
 
+Route::get('export-laporan', function () {
+    return Excel::download(new LaporanExport, 'laporan.xlsx');
+});

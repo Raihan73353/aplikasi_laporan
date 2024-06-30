@@ -15,7 +15,9 @@
         <div class="card card-info">
             <div class="card-header">
                 <h2 class="card-title">Data Laporan</h2>
-
+                <a href="{{ url('export-laporan') }}" class="btn btn-success">
+                    <i class="fas fa-file-excel"></i> Export to Excel
+                </a>
             </div>
             <!-- /.card-header -->
 
@@ -49,6 +51,7 @@
                             <th>Progres</th>
                             <th>EP</th>
                             <th>Std EPH</th>
+                            <th>Progres2</th>
                             <th>Suhu</th>
                             <th>RH</th>
                             <th>HI</th>
@@ -90,6 +93,7 @@
                                 <td>{{ $dt->progres }}</td>
                                 <td>{{ $dt->ep }}</td>
                                 <td>{{ $dt->std_eph }}</td>
+                                <td>{{ $dt->progres2 }}</td>
                                 <td>{{ $dt->suhu }}</td>
                                 <td>{{ $dt->rh }}</td>
                                 <td>{{ $dt->hi }}</td>
