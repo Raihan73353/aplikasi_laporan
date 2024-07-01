@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\laporan;
 use App\Models\peternakan;
+use App\Models\priode;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\View\View;
 class LaporanController extends Controller
 {
     //
@@ -16,11 +18,29 @@ class LaporanController extends Controller
             "title"=>"laporan",
             "data"=>$laporan,
          ]);
+    }
+    public function select(){
+        $laporan=peternakan::all();
+        $priode = priode::all();
+        return view('laporan.select',[
+            "title"=>"laporan",
+            "data"=>$laporan,
+            "priode" => $priode
+         ]);
 
     }
     public function create($id){
         return view('laporan.create', ["title" => "Tambah Laporan", "priode_id" => $id]);
     }
+
+    public function show($id): View {
+        $laporan = laporan::where('priode_id', $id)->get();
+        return view('laporan.show')->with([
+            "title" => "laporan",
+            "data" => $laporan
+        ]);
+    }
+
 
     public function store(Request $request, $id)
 {

@@ -78,7 +78,7 @@
                             alt="User Image">
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block">{{ Auth::user()->email }}</a>
+                        <a href="#" class="d-block">{{ Auth::user()->username }}</a>
                     </div>
                 </div>
 
@@ -129,8 +129,16 @@
                             </a>
                         </li>
 
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a href="{{route('laporan.index')}}" class="nav-link {{ ($title==='laporan') ? 'active':'' }}">
+                                <i class="nav-icon fas fa-cash-register"></i>
+                                <p>
+                                    laporan
+                                </p>
+                            </a>
+                        </li> --}}
+                        <li class="nav-item">
+                            <a href="{{route('select.select')}}" class="nav-link {{ ($title==='laporan') ? 'active':'' }}">
                                 <i class="nav-icon fas fa-cash-register"></i>
                                 <p>
                                     laporan

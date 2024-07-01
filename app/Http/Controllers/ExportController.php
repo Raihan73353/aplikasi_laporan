@@ -10,10 +10,9 @@ class ExportController extends Controller
 {
     public function export()
     {
-        // Menggunakan Excel::create() dari versi 1.1
         Excel::create('LaporanData', function($excel) {
             $excel->sheet('Sheet 1', function($sheet) {
-                $data = DB::table('nama_tabel')->select([
+                $data = DB::table('laporans')->select([
                     'petugas_id', 'mdd_ci', 'priode_id', 'tgl_ci', 'pop_e', 'bw_doc',
                     'doc', 'jenis_pakan', 'tkp_sak', 'sp_sak', 'terpakai', 'umur',
                     'mor_e', 'mor', 'ayam_hidup', 'bw', 'fi', 'act_fcr', 'std_fcr',
@@ -21,7 +20,6 @@ class ExportController extends Controller
                     'rh', 'hi', 'kepadatan', 'tra', 'tma', 'treatment_ovk', 'kondisi', 'saran'
                 ])->get();
 
-                // Mengkonversi data ke array
                 $dataArray = [];
                 foreach ($data as $dt) {
                     $dataArray[] = (array) $dt;

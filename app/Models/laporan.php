@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class laporan extends Model
 {
     use HasFactory;
+    protected $laporan = 'laporan';
     protected $fillable = [
         'petugas_id',
         'mdd_ci',
@@ -52,6 +53,8 @@ class laporan extends Model
 
     public function priode()
     {
-        return $this->belongsTo(priode::class, 'peternakan_id');
+        // return $this->belongsTo(priode::class, 'peternakan_id');
+        return $this->join('priode', 'laporan.priode_id', '=', 'priode.id')
+                    ->select('laporan.*', 'priode.id');
     }
 }

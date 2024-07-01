@@ -28,8 +28,10 @@ use Maatwebsite\Excel\Facades\Excel;
 Route::get('/',[LoginController::class,'loginView']);
 Route::resource('pengguna',UserController::class)->middleware('auth');
 Route::resource('user', UserController::class);
+Route::resource('password', petugasController::class);
 Route::resource('peternakan',peternakanController::class)->middleware('auth');
 Route::resource('laporan',LaporanController::class)->middleware('auth');
+Route::get('select',[LaporanController::class,'select'])->name('select.select')->middleware('auth');
 // Route::get('/laporan/create/{id}', [LaporanController::class, 'create'])->name('laporan.create')->middleware('auth');
 // Route::post('/laporan/store/{id}', [LaporanController::class, 'store'])->name('laporan.store')->middleware('auth');
 

@@ -7,6 +7,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -54,6 +55,12 @@ class UserController extends Controller
             "password"=>$password
         ]);
         $user->update($request->only(['password']));
-        return redirect()->route('user.index')->with('updated', 'Data Pengguna Berhasil Diubah');
+
+        $loginRole = Auth::user()->role;
+        if ($loginRole == 'admin') {
+            return redirect()->route('user.index')->with('updated', 'Data Pengguna Berhasil Diubah');
+        } else {
+            return redirect()->route('petugas.index')->with('updated', 'Data Pengguna Berhasil Diubah');
+        }
     }
 }
