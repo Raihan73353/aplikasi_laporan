@@ -25,8 +25,6 @@
                     <div class="card-header">
                         <h3 class="card-title">Ubah Data Pengguna</h3>
                     </div>
-                    <!-- /.card-header -->
-                    <!-- form start -->
                     <form action="{{ route('user.update', Auth::user()->id) }}" method="POST">
                         @csrf
                         @method('PUT')
@@ -40,8 +38,6 @@
                                 <input type="password" name="password" class="form-control" id="password" required>
                             </div>
                         </div>
-                        <!-- /.card-body -->
-
                         <div class="card-footer">
                             <button type="submit" class="btn btn-warning float-right">Simpan</button>
                         </div>

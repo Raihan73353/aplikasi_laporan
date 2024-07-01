@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         .content {
-            margin-top: 20px; /* Jarak antara navbar dan konten */
+            margin-top: 30px;
         }
     </style>
 </head>
