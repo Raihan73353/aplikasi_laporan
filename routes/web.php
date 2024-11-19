@@ -49,8 +49,7 @@ Route::post('/priode/store/{id}', [priodeController::class, 'store'])->name('pri
 // route::post('/pbbh', [pbbhController::class, 'store'])->name('pbbh.store');
 
 
+Route::get('laporan/create1/{priode_id}', [LaporanController::class, 'create'])->name('laporan.create1')->middleware('auth');
 Route::get('laporan/create/{priode_id}', inputData::class)->name('laporan.create')->middleware('auth');
-
-Route::get('export-laporan', function () {
-    return Excel::download(new LaporanExport, 'laporan.xlsx');
-});
+// Route::get('export-laporan', function () {
+//     return Excel::download(new LaporanExport, 'laporan.xlsx');

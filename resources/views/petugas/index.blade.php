@@ -66,7 +66,7 @@
                             <h4>Peternakan: {{ $peternakan->nama }}</h4>
                             @foreach ($periode as $p)
                                 @if ($p->id_peternakan == $peternakan->id)
-                                    <a href="{{ route('laporan.create', $p->id) }}" class="btn btn-warning">
+                                    <a href="{{ route('laporan.create1', $p->id) }}" class="btn btn-warning">
                                         + Laporan (Periode ID: {{ $p->id }})
                                     </a>
                                 @endif
