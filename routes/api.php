@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Models\fcr;
 use App\Models\pbbh;
+use App\Http\Controllers\Api\CalculationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,29 +20,33 @@ use App\Models\pbbh;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::get('/get-std-fcr', function (Request $request) {
-    $bw = $request->query('bw');
-    $stdFcr = Fcr::where('bw', '>=', $bw)
-                  ->orderBy('bw')
-                  ->select('fcr')
-                  ->first();
+// Route::get('/get-std-fcr', function (Request $request) {
+//     $bw = $request->query('bw');
+//     $stdFcr = Fcr::where('bw', '>=', $bw)
+//                   ->orderBy('bw')
+//                   ->select('fcr')
+//                   ->first();
 
-    return response()->json([
-        'std_fcr' => $stdFcr ? $stdFcr->fcr : null,
-    ]);
-});
+//     return response()->json([
+//         'std_fcr' => $stdFcr ? $stdFcr->fcr : null,
+//     ]);
+// });
 
-Route::get('/get-pbbh', function (Request $request) {
-    $umur = $request->query('umur');
+// Route::get('/get-pbbh', function (Request $request) {
+//     $umur = $request->query('umur');
 
-    // Cari record PBBH berdasarkan umur
-    $pbbhRecord = Pbbh::where('umur', '>=', $umur)
-                       ->orderBy('umur')
-                       ->select('pbbh')
-                       ->first();
+//     // Cari record PBBH berdasarkan umur
+//     $pbbhRecord = Pbbh::where('umur', '>=', $umur)
+//                        ->orderBy('umur')
+//                        ->select('pbbh')
+//                        ->first();
 
-    // Jika data ditemukan, kembalikan pbbh, jika tidak return null
-    return response()->json([
-        'pbbh' => $pbbhRecord ? $pbbhRecord->pbbh : null,
-    ]);
-});
+//     // Jika data ditemukan, kembalikan pbbh, jika tidak return null
+//     return response()->json([
+//         'pbbh' => $pbbhRecord ? $pbbhRecord->pbbh : null,
+//     ]);
+// });
+
+Route::get('/fcr', [CalculationController::class, 'getFcr']);
+Route::get('/pbbh', [CalculationController::class, 'getPbbh']);
+Route::get('/eph', [CalculationController::class, 'getEph']);
