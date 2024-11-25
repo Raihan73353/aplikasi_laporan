@@ -119,8 +119,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="pbbh">PBBH</label>
-                                <input type="number"  class="form-control" id="pbbh" name="pbbh"
-                                    required>
+                                <input type="number" class="form-control" id="pbbh" name="pbbh" required>
                             </div>
 
                             <div class="form-group">
@@ -130,11 +129,13 @@
                             </div>
                             <div class="form-group">
                                 <label for="progres">Progres</label>
-                                <input type="number" step="1" class="form-control" id="progres" name="progres" readonly>
+                                <input type="number" step="1" class="form-control" id="progres" name="progres"
+                                    readonly>
                             </div>
                             <div class="form-group">
                                 <label for="ep">EP</label>
-                                <input type="number" step="1" class="form-control" id="ep" name="ep" readonly>
+                                <input type="number" step="1" class="form-control" id="ep" name="ep"
+                                    readonly>
                             </div>
                             <div class="form-group">
                                 <label for="std_eph">STD EPH</label>
@@ -142,7 +143,8 @@
                             </div>
                             <div class="form-group">
                                 <label for="progres2">Progres 2</label>
-                                <input type="number" step="1" class="form-control" id="progres2" name="progres2" readonly>
+                                <input type="number" step="1" class="form-control" id="progres2"
+                                    name="progres2" readonly>
                             </div>
                             <div class="form-group">
                                 <label for="suhu">Suhu</label>
@@ -170,7 +172,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="treatment_ovk">treatment ovk</label>
-                                <input type="number" class="form-control" id="treatment_ovk" name="treatment_ovk"
+                                <input type="text" class="form-control" id="treatment_ovk" name="treatment_ovk"
                                     required>
                             </div>
                             <div class="form-group">
@@ -356,192 +358,212 @@
         </script> --}}
         <script>
             document.addEventListener('DOMContentLoaded', () => {
-    // Mengambil elemen input
-    const tkpSak = document.getElementById('tkp_sak');
-    const spSak = document.getElementById('sp_sak');
-    const tglCi = document.getElementById('tgl_ci');
-    const morE = document.getElementById('mor_e');
-    const bw = document.getElementById('bw');
-    const popE = document.getElementById('pop_e');
-    const suhu = document.getElementById('suhu');
-    const rh = document.getElementById('rh');
+                // Mengambil elemen input
+                const tkpSak = document.getElementById('tkp_sak');
+                const spSak = document.getElementById('sp_sak');
+                const tglCi = document.getElementById('tgl_ci');
+                const morE = document.getElementById('mor_e');
+                const bw = document.getElementById('bw');
+                const popE = document.getElementById('pop_e');
+                const suhu = document.getElementById('suhu');
+                const rh = document.getElementById('rh');
 
-    const terpakai = document.getElementById('terpakai');
-    const umur = document.getElementById('umur');
-    const mor = document.getElementById('mor');
-    const ayamHidup = document.getElementById('ayam_hidup');
-    const fi = document.getElementById('fi');
-    const actFcr = document.getElementById('act_fcr');
-    const stdFcr = document.getElementById('std_fcr');
-    const dif = document.getElementById('dif');
-    const stdPbbh = document.getElementById('std_pbbh');
-    const progres = document.getElementById('progres');
-    const ep = document.getElementById('ep');
-    const stdEph = document.getElementById('std_eph');
-    const progres2 = document.getElementById('progres2');
-    const hi = document.getElementById('hi');
+                const terpakai = document.getElementById('terpakai');
+                const umur = document.getElementById('umur');
+                const mor = document.getElementById('mor');
+                const ayamHidup = document.getElementById('ayam_hidup');
+                const fi = document.getElementById('fi');
+                const actFcr = document.getElementById('act_fcr');
+                const stdFcr = document.getElementById('std_fcr');
+                const dif = document.getElementById('dif');
+                const stdPbbh = document.getElementById('std_pbbh');
+                const progres = document.getElementById('progres');
+                const ep = document.getElementById('ep');
+                const stdEph = document.getElementById('std_eph');
+                const progres2 = document.getElementById('progres2');
+                const hi = document.getElementById('hi');
 
-    // Fungsi untuk menghitung umur dari tanggal CI
-    function calculateUmur() {
-        const currentDate = new Date();
-        const ciDate = new Date(tglCi.value);
-        const diffTime = Math.abs(currentDate - ciDate);
-        return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-    }
-
-    // Fungsi untuk menghitung semua nilai
-    function calculateValues() {
-        // Terpakai
-        terpakai.value = tkpSak.value - spSak.value;
-
-        // Umur
-        umur.value = tglCi.value ? calculateUmur() : '';
-
-        if (morE.value && popE.value && bw.value) {
-            // Mor dan Ayam Hidup
-            mor.value = (morE.value / popE.value * 100).toFixed(2);
-            ayamHidup.value = popE.value - morE.value;
-
-            // FI dan Act FCR
-            fi.value = (terpakai.value * 50 / ayamHidup.value).toFixed(3);
-            actFcr.value = (fi.value / bw.value).toFixed(3);
-
-            // Standar FCR
-            const bulat = Math.floor(bw.value * 100) / 100;
-            fetch(`/api/fcr?bw=${bulat}`)
-                .then(response => response.json())
-                .then(data => {
-                    stdFcr.value = data.fcr || '';
-                    dif.value = (actFcr.value - stdFcr.value).toFixed(3);
-                });
-        }
-        //progres
-        document.getElementById('pbbh').addEventListener('input', updateProgres);
-document.getElementById('std_pbbh').addEventListener('input', updateProgres);
-
-function updateProgres() {
-    const pbbh = parseFloat(document.getElementById('pbbh').value);
-    const std_pbbh = parseFloat(document.getElementById('std_pbbh').value);
-    const progresInput = document.getElementById('progres');
-
-    const progres = calculateProgres(pbbh, std_pbbh);
-
-    if (progres !== null) {
-        progresInput.value = progres;
-
-        // Ubah warna teks berdasarkan nilai progres
-        if (progres < 0) {
-            progresInput.style.color = 'red'; // Warna merah
-        } else {
-            progresInput.style.color = 'green'; // Warna hijau
-        }
-    } else {
-        progresInput.value = '';
-        progresInput.style.color = ''; // Reset warna teks
-    }
-}
-
-function calculateProgres(pbbh, std_pbbh) {
-    if (!isNaN(pbbh) && !isNaN(std_pbbh)) {
-        return pbbh - std_pbbh;
-    } else {
-        return null;
-    }
-}
-
-
-
-        // STD PBBH
-        fetch(`/api/pbbh?umur=${umur.value}`)
-            .then(response => response.json())
-            .then(data => {
-                stdPbbh.value = data.pbbh || '';
-                progres.value = (stdPbbh.value ? (parseFloat(stdPbbh.value) - stdPbbh.value).toFixed(2) : '');
-            });
-
-        // EP dan Progres 2
-        if (bw.value && fi.value) {
-            ep.value = (bw.value / fi.value * 100).toFixed(0);
-            fetch(`/api/eph?umur=${umur.value}`)
-                .then(response => response.json())
-                .then(data => {
-                    stdEph.value = data.eph || '';
-                    progres2.value = (ep.value && stdEph.value ? (ep.value - stdEph.value).toFixed(0) : '');
-                });
-        }
-        //warna progres 2
-        if (bw.value && fi.value) {
-    ep.value = (bw.value / fi.value * 100).toFixed(0);
-
-    fetch(`/api/eph?umur=${umur.value}`)
-        .then(response => response.json())
-        .then(data => {
-            stdEph.value = data.eph || '';
-            if (ep.value && stdEph.value) {
-                const progres2Value = (ep.value - stdEph.value).toFixed(0);
-                progres2.value = progres2Value;
-
-                // Ubah warna teks berdasarkan nilai progres2
-                if (progres2Value < 0) {
-                    progres2.style.color = 'red'; // Warna merah
-                } else {
-                    progres2.style.color = 'green'; // Warna hijau
+                // Fungsi untuk menghitung umur dari tanggal CI
+                function calculateUmur() {
+                    const currentDate = new Date();
+                    const ciDate = new Date(tglCi.value);
+                    const diffTime = Math.abs(currentDate - ciDate);
+                    return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
                 }
-            } else {
-                progres2.value = '';
-                progres2.style.color = ''; // Reset warna teks
-            }
-        })
-        .catch(error => {
-            console.error('Error fetching EPH:', error);
-            progres2.value = '';
-            progres2.style.color = ''; // Reset warna teks jika terjadi kesalahan
-        });
-}
+
+                // Fungsi untuk menghitung semua nilai
+                function calculateValues() {
+                    // Terpakai
+                    terpakai.value = tkpSak.value - spSak.value;
+
+                    // Umur
+                    umur.value = tglCi.value ? calculateUmur() : '';
+
+                    if (morE.value && popE.value && bw.value) {
+                        // Mor dan Ayam Hidup
+                        const calculatedMor = (morE.value / popE.value * 100).toFixed(2);
+                        mor.value = calculatedMor;
+                        ayamHidup.value = popE.value - morE.value;
+
+                        if (calculatedMor > 3) {
+                            mor.style.color = 'red';
+                        } else if (calculatedMor<=3){
+                            mor.style.color = 'green'
+                        }
+                        else {
+                            mor.style.color = '';
+                        }
+
+                        // FI dan Act FCR
+                        fi.value = (terpakai.value * 50 / ayamHidup.value).toFixed(3);
+                        actFcr.value = (fi.value / bw.value).toFixed(3);
+
+                        // Standar FCR
+                        const bulat = Math.floor(bw.value * 100) / 100;
+                        fetch(`/api/fcr?bw=${bulat}`)
+                            .then(response => response.json())
+                            .then(data => {
+                                stdFcr.value = data.fcr || '';
+                                const calculatedDif = (actFcr.value - stdFcr.value).toFixed(3);
+                                dif.value = calculatedDif;
+
+                                if (calculatedDif > 0) {
+                                    dif.style.color = 'red';
+                                } else if (calculatedDif < 0) {
+                                    dif.style.color = 'green';
+                                } else {
+                                    dif.style.color = '';
+                                }
+                            });
+                    }
+
+                    //progres
+                    document.getElementById('pbbh').addEventListener('input', updateProgres);
+                    document.getElementById('std_pbbh').addEventListener('input', updateProgres);
+
+                    function updateProgres() {
+                        const pbbh = parseFloat(document.getElementById('pbbh').value);
+                        const std_pbbh = parseFloat(document.getElementById('std_pbbh').value);
+                        const progresInput = document.getElementById('progres');
+
+                        const progres = calculateProgres(pbbh, std_pbbh);
+
+                        if (progres !== null) {
+                            progresInput.value = progres;
+
+                            if (progres < 0) {
+                                progresInput.style.color = 'red';
+                            } else {
+                                progresInput.style.color = 'green';
+                            }
+                        } else {
+                            progresInput.value = '';
+                            progresInput.style.color = '';
+                        }
+                    }
+
+                    function calculateProgres(pbbh, std_pbbh) {
+                        if (!isNaN(pbbh) && !isNaN(std_pbbh)) {
+                            return pbbh - std_pbbh;
+                        } else {
+                            return null;
+                        }
+                    }
 
 
-        // HI
-        if (suhu.value && rh.value) {
-            const farenheit = Math.floor((suhu.value * 9 / 5) + 32);
-            hi.value = farenheit + parseInt(rh.value, 10);
 
-        }
-        //warna hi
-        document.getElementById('suhu').addEventListener('input', updateHi);
-document.getElementById('rh').addEventListener('input', updateHi);
+                    // STD PBBH
+                    fetch(`/api/pbbh?umur=${umur.value}`)
+                        .then(response => response.json())
+                        .then(data => {
+                            stdPbbh.value = data.pbbh || '';
+                            progres.value = (stdPbbh.value ? (parseFloat(stdPbbh.value) - stdPbbh.value).toFixed(
+                                2) : '');
+                        });
 
-function updateHi() {
-    const suhu = document.getElementById('suhu');
-    const rh = document.getElementById('rh');
-    const hi = document.getElementById('hi');
+                    // EP dan Progres 2
+                    if (bw.value && fi.value) {
+                        ep.value = (bw.value / fi.value * 100).toFixed(0);
+                        fetch(`/api/eph?umur=${umur.value}`)
+                            .then(response => response.json())
+                            .then(data => {
+                                stdEph.value = data.eph || '';
+                                progres2.value = (ep.value && stdEph.value ? (ep.value - stdEph.value).toFixed(0) :
+                                    '');
+                            });
+                    }
+                    //warna progres 2
+                    if (bw.value && fi.value) {
+                        ep.value = (bw.value / fi.value * 100).toFixed(0);
 
-    if (suhu.value && rh.value) {
-        const farenheit = Math.floor((suhu.value * 9 / 5) + 32);
-        const hiValue = farenheit + parseInt(rh.value, 10);
+                        fetch(`/api/eph?umur=${umur.value}`)
+                            .then(response => response.json())
+                            .then(data => {
+                                stdEph.value = data.eph || '';
+                                if (ep.value && stdEph.value) {
+                                    const progres2Value = (ep.value - stdEph.value).toFixed(0);
+                                    progres2.value = progres2Value;
 
-        hi.value = hiValue;
+                                    // Ubah warna teks berdasarkan nilai progres2
+                                    if (progres2Value < 0) {
+                                        progres2.style.color = 'red'; // Warna merah
+                                    } else {
+                                        progres2.style.color = 'green'; // Warna hijau
+                                    }
+                                } else {
+                                    progres2.value = '';
+                                    progres2.style.color = ''; // Reset warna teks
+                                }
+                            })
+                            .catch(error => {
+                                console.error('Error fetching EPH:', error);
+                                progres2.value = '';
+                                progres2.style.color = ''; // Reset warna teks jika terjadi kesalahan
+                            });
+                    }
 
-        // Ubah warna teks berdasarkan nilai HI
-        if (hiValue > 160) {
-            hi.style.color = 'red'; // Warna merah
-        } else {
-            hi.style.color = ''; // Warna hijau
-        }
-    } else {
-        hi.value = '';
-        hi.style.color = ''; // Reset warna teks
-    }
-}
+
+                    // HI
+                    if (suhu.value && rh.value) {
+                        const farenheit = Math.floor((suhu.value * 9 / 5) + 32);
+                        hi.value = farenheit + parseInt(rh.value, 10);
+
+                    }
+                    //warna hi
+                    document.getElementById('suhu').addEventListener('input', updateHi);
+                    document.getElementById('rh').addEventListener('input', updateHi);
+
+                    function updateHi() {
+                        const suhu = document.getElementById('suhu');
+                        const rh = document.getElementById('rh');
+                        const hi = document.getElementById('hi');
+
+                        if (suhu.value && rh.value) {
+                            const farenheit = Math.floor((suhu.value * 9 / 5) + 32);
+                            const hiValue = farenheit + parseInt(rh.value, 10);
+
+                            hi.value = hiValue;
+
+                            // Ubah warna teks berdasarkan nilai HI
+                            if (hiValue > 160) {
+                                hi.style.color = 'red'; // Warna merah
+                            } else {
+                                hi.style.color = ''; // Warna hijau
+                            }
+                        } else {
+                            hi.value = '';
+                            hi.style.color = ''; // Reset warna teks
+                        }
+                    }
 
 
-    }
+                }
 
-    // Event listener untuk semua input
-    [tkpSak, spSak, tglCi, morE, bw, popE, suhu, rh].forEach(input => {
-        input.addEventListener('input', calculateValues);
-    });
-});
-
+                // Event listener untuk semua input
+                [tkpSak, spSak, tglCi, morE, bw, popE, suhu, rh].forEach(input => {
+                    input.addEventListener('input', calculateValues);
+                });
+            });
         </script>
 
     </div>

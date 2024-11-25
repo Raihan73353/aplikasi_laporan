@@ -63,7 +63,7 @@
                 <div class="card-body">
                     @foreach ($data as $peternakan)
                         <div class="peternakan">
-                            <h4>Peternakan: {{ $peternakan->nama }}</h4>
+                            <h4>Nama Peternakan: {{ $peternakan->nama }}</h4>
                             @foreach ($periode as $p)
                                 @if ($p->id_peternakan == $peternakan->id)
                                     <a href="{{ route('laporan.create1', $p->id) }}" class="btn btn-warning">
