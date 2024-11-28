@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\View\View;
+
 class LaporanController extends Controller
 {
     //
@@ -34,15 +35,27 @@ class LaporanController extends Controller
     }
 
     public function show($id): View {
+
         $laporan = laporan::where('priode_id', $id)->get();
-        return view('laporan.show')->with([
-            "title" => "laporan",
-            "data" => $laporan
-        ]);
+        $petugas_role = Auth::user()->role;
+ //dd($petugas_id);
+ if ($petugas_role == 'admin') {
+    return view('laporan.show')->with([
+        "title" => "laporan",
+        "data" => $laporan
+    ]);
+} elseif ($petugas_role == 'petugas') { // Perbaiki typo
+    return view('petugas.show')->with([
+        "title" => "laporan",
+        "data" => $laporan
+    ]);
+}
+
+        abort(403, 'Anda tidak memiliki izin untuk melihat halaman ini.');
     }
 
 
-    public function store(Request $request)
+    public function store(Request $request,)
 {
 
     $validator = Validator::make($request->all(), [
@@ -126,6 +139,6 @@ $petugas_id = Auth::id();
     'saran' => $request->saran,
 ]);
 
-return redirect()->route('petugas.index')->with('success', 'Laporan berhasil ditambahkan');
+return redirect()->route('laporan.show',$request->priode_id)->with('success', 'Laporan berhasil ditambahkan');
 }
 }
