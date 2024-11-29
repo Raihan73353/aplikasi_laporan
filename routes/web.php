@@ -44,7 +44,7 @@ Route::post('logout',[LoginController::class,'logout'])->middleware('auth');
 Route::resource('priode',priodeController::class)->middleware('auth');
 Route::get('/priode/create/{id}', [priodeController::class, 'create'])->name('priode.create')->middleware('auth');
 Route::post('/priode/store/{id}', [priodeController::class, 'store'])->name('priode.store')->middleware('auth');
-
+Route::resource('laporanp', LaporanController::class);
 // route::get('/fcr', [fcrController::class, 'create'])->name('fcr.create');
 // route::post('/fcr', [fcrController::class, 'store'])->name('fcr.store');
 // route::get('/pbbh', [pbbhController::class, 'create'])->name('pbbh.create');

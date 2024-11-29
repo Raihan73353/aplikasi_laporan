@@ -141,4 +141,10 @@ $petugas_id = Auth::id();
 
 return redirect()->route('laporan.show',$request->priode_id)->with('success', 'Laporan berhasil ditambahkan');
 }
+public function edit(laporan $laporan):View
+    {
+        return view('petugas.edit',compact('peternakan'))->with([
+            "title" => "Ubah Data peternakan",
+        ]);
+    }
 }

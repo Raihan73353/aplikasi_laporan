@@ -102,7 +102,13 @@
                                 <td>{{ $dt->treatment_ovk }}</td>
                                 <td>{{ $dt->kondisi }}</td>
                                 <td>{{ $dt->saran }}</td>
-                                <td><td>
+                                <td> <div class="btn-group">
+                                    <a type="button" class="btn btn-warning ml-2"
+                                        href="{{ route('laporan.edit', $dt->id) }}">
+                                        <i class=" fas fa-edit"></i>
+                                    </a>
+                                    </div>
+                                    <td>
                             </tr>
                         @endforeach
                     </tbody>
