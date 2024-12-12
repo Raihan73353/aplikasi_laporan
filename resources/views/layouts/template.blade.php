@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{$title}}</title>
+    <title>{{ $title }}</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
@@ -16,7 +16,7 @@
     <!-- IonIcons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Theme style -->
-    <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -26,7 +26,8 @@
             <!-- Left navbar links -->
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i
+                            class="fas fa-bars"></i></a>
                 </li>
 
             </ul>
@@ -41,7 +42,7 @@
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                         <span class="dropdown-item dropdown-header">User Menu</span>
                         <div class="dropdown-divider"></div>
-                        <a href="{{ route('peternakan.index')}}" class="dropdown-item">
+                        <a href="{{ route('peternakan.index') }}" class="dropdown-item">
                             <i class="fas fa-user mr-2"></i> {{ Auth::user()->role }}
                             <span class="float-right text-muted text-sm"></span>
                         </a>
@@ -49,7 +50,8 @@
                         <div class="dropdown-divider"></div>
                         <form action="logout" method="POST">
                             @csrf
-                                <button type="submit" class="dropdown-item"><i class="fas fa-sign-out-alt mr-2"></i>Logout</button>
+                            <button type="submit" class="dropdown-item"><i
+                                    class="fas fa-sign-out-alt mr-2"></i>Logout</button>
                         </form>
                     </div>
                 </li>
@@ -74,7 +76,7 @@
                 <!-- Sidebar user panel (optional) -->
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                     <div class="image">
-                        <img src="{{ asset('dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2"
+                        <img src="{{ asset('dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2"
                             alt="User Image">
                     </div>
                     <div class="info">
@@ -102,8 +104,8 @@
                         </li> --}}
                         <li class="nav-item">
                             {{-- <a href="{{ route('kategori.index')}}" --}}
-                            <a href="{{ route('peternakan.index')}}"
-                                class="nav-link {{ ($title==='peternakan') ? 'active':'' }}">
+                            <a href="{{ route('peternakan.index') }}"
+                                class="nav-link {{ $title === 'peternakan' ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-th-large"></i>
                                 <p>
                                     peternakan
@@ -111,7 +113,8 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('priode.index')}}" class="nav-link {{ ($title==='priode')?'active':'' }}">
+                            <a href="{{ route('priode.index') }}"
+                                class="nav-link {{ $title === 'priode' ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>
                                     priode
@@ -121,7 +124,8 @@
                         </li>
 
                         <li class="nav-item">
-                            <a href="{{ route('pengguna.index')}}" class="nav-link {{ ($title==='Data Pengguna')?'active':''}}">
+                            <a href="{{ route('pengguna.index') }}"
+                                class="nav-link {{ $title === 'Data Pengguna' ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-users"></i>
                                 <p>
                                     Users
@@ -138,7 +142,8 @@
                             </a>
                         </li> --}}
                         <li class="nav-item">
-                            <a href="{{route('select.select')}}" class="nav-link {{ ($title==='laporan') ? 'active':'' }}">
+                            <a href="{{ route('select.select') }}"
+                                class="nav-link {{ $title === 'laporan' ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-cash-register"></i>
                                 <p>
                                     laporan
@@ -209,17 +214,17 @@
     <!-- REQUIRED SCRIPTS -->
 
     <!-- jQuery -->
-    <script src="{{ asset('plugins/jquery/jquery.min.js')}}"></script>
+    <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
     <!-- Bootstrap -->
-    <script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+    <script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
     @yield('tambahanJS')
 
     <!-- AdminLTE -->
-    <script src="{{ asset('dist/js/adminlte.js')}}"></script>
+    <script src="{{ asset('dist/js/adminlte.js') }}"></script>
 
     <!-- OPTIONAL SCRIPTS -->
-    <script src="{{ asset('plugins/chart.js/Chart.min.js')}}"></script>
+    <script src="{{ asset('plugins/chart.js/Chart.min.js') }}"></script>
 
 
     @yield('tambahScript')

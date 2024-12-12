@@ -60,28 +60,49 @@
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
-            <a href="#" class="brand-link">
-                <img src="{{ asset('dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
 
-            </a>
 
             <!-- Sidebar -->
             <div class="sidebar">
+                <!-- Sidebar user panel (optional) -->
+                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                    <div class="image">
+                        <img src="{{ asset('dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2"
+                            alt="User Image">
+                    </div>
+                    <div class="info">
+                        <a href="#" class="d-block">{{ Auth::user()->username }}</a>
+                    </div>
+                </div>
+
+
+
                 <!-- Sidebar Menu -->
                 <nav class="mt-2">
-                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                        data-accordion="false">
+                        <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
 
-                                <p></p>
+                        <li class="nav-item">
+                            <a href="{{ route('petugas.index') }}"
+                                class="nav-link ">
+                                <i class="nav-icon fas fa-user mr-2"></i>
+                                <p>
+                                    petugas
+                                </p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                
-                                <p></p>
+                            <a href="{{ route('select.select') }}"
+                                class="nav-link ">
+                                <i class="nav-icon fas fa-cash-register"></i>
+                                <p>
+                                    laporan
+                                </p>
                             </a>
                         </li>
+
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->
@@ -122,6 +143,7 @@
                 <h5>Title</h5>
                 <p>Sidebar content</p>
             </div>
+
         </aside>
         <!-- /.control-sidebar -->
 

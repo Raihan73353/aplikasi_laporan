@@ -25,11 +25,20 @@ class LaporanController extends Controller
     public function select(){
         $laporan=peternakan::all();
         $priode = priode::all();
+        $petugas_role = Auth::user()->role;
+        if ($petugas_role == 'admin') {
         return view('laporan.select',[
             "title"=>"laporan",
             "data"=>$laporan,
             "priode" => $priode
          ]);
+        }elseif ($petugas_role == 'petugas') {
+            return view('petugas.select',[
+                "title"=>"laporan",
+                "data"=>$laporan,
+                "priode" => $priode
+             ]);
+        }
 
     }
     public function create($id){
@@ -39,7 +48,8 @@ class LaporanController extends Controller
     public function show($id): View {
 
         $laporan = laporan::where('priode_id', $id)->get();
-        $laporan1 = laporan::latest()->paginate(1)->where('priode_id', $id);
+       // $laporan1 = laporan::latest()->paginate(1)->where('priode_id', $id);
+        $laporan1 = laporan::where('priode_id', $id)->get();;
         $petugas_role = Auth::user()->role;
  //dd($petugas_id);
  if ($petugas_role == 'admin') {
@@ -244,7 +254,7 @@ public function edit($id)
         'saran' => $request->saran,
     ]);
 
-    return redirect()->route('petugas.index',
+    return redirect()->route('laporan.show', $id=$request->priode_id,
     )->with('success', 'Laporan berhasil diperbarui');
 }
 
