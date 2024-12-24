@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('laporans', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('petugas_id');
+            $table->date('tgl_kunjungan');
             $table->integer('mdd_ci');
             $table->unsignedBigInteger('priode_id');
             $table->date('tgl_ci');

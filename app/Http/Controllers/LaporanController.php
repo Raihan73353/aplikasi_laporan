@@ -9,6 +9,7 @@ use App\Models\peternakan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
+use Carbon\Carbon;
 
 use Illuminate\Support\Facades\Validator;
 
@@ -41,9 +42,7 @@ class LaporanController extends Controller
         }
 
     }
-    public function create($id){
-        return view('laporan.create1', ["title" => "Tambah Laporan", "priode_id" => $id]);
-    }
+
 
     public function show($id): View {
 
@@ -66,13 +65,23 @@ class LaporanController extends Controller
 
         abort(403, 'Anda tidak memiliki izin untuk melihat halaman ini.');
     }
-
+    public function create($id){
+        $tgl=priode::find($id);
+        $data=$tgl->tgl_mulai;
+        //dd($data);
+        return view('laporan.create1', [
+            "title" => "Tambah Laporan",
+            "priode_id" => $id,
+            "tgl"=>$data
+        ]);
+    }
 
     public function store(Request $request,)
 {
 
     $validator = Validator::make($request->all(), [
         'petugas_id' => 'required',
+        'tgl_kunjungan' => 'required',
         'mdd_ci' => 'required',
         'priode_id' => 'required',
         'tgl_ci' => 'required',
@@ -112,47 +121,61 @@ class LaporanController extends Controller
     if ($validator->fails()) {
         return redirect()->back()->withErrors($validator)->withInput();
     }
-$petugas_id = Auth::id();
-    Laporan::create([
-    'petugas_id' => $petugas_id,
-    'mdd_ci' => $request->mdd_ci,
-    'priode_id' => $request->priode_id,
-    'map' => $request->map,
-    'tgl_ci' => $request->tgl_ci,
-    'pop_e' => $request->pop_e,
-    'bw_doc' => $request->bw_doc,
-    'doc' => $request->doc,
-    'jenis_pakan' => $request->jenis_pakan,
-    'tkp_sak' => $request->tkp_sak,
-    'sp_sak' => $request->sp_sak,
-    'terpakai' => $request->terpakai,
-    'umur' => $request->umur,
-    'mor_e' => $request->mor_e,
-    'mor' => $request->mor,
-    'ayam_hidup' => $request->ayam_hidup,
-    'bw' => $request->bw,
-    'fi' => $request->fi,
-    'act_fcr' => $request->act_fcr,
-    'std_fcr' => $request->std_fcr,
-    'dif' => $request->dif,
-    'pbbh' => $request->pbbh,
-    'std_pbbh' => $request->std_pbbh,
-    'progres' => $request->progres,
-    'ep' => $request->ep,
-    'std_eph' => $request->std_eph,
-    'progres2' => $request->progres2,
-    'suhu' => $request->suhu,
-    'rh' => $request->rh,
-    'hi' => $request->hi,
-    'kepadatan' => $request->kepadatan,
-    'tra' => $request->tra,
-    'tma' => $request->tma,
-    'treatment_ovk' => $request->treatment_ovk,
-    'kondisi' => $request->kondisi,
-    'saran' => $request->saran,
-]);
 
-return redirect()->route('laporan.show',$request->priode_id)->with('success', 'Laporan berhasil ditambahkan');
+    // Ambil data periode berdasarkan priod_id
+    $priode_tgl = priode::find($request->priode_id);
+
+    // Ambil id petugas yang sedang login
+    $petugas_id = Auth::id();
+
+    // Hitung umur berdasarkan selisih tgl_kunjungan dan tgl_ci
+    $tglKunjungan = Carbon::parse($request->tgl_kunjungan);
+    $tglCi = Carbon::parse($priode_tgl->tgl_mulai);
+    $umur = $tglKunjungan->diffInDays($tglCi);
+
+    // Simpan data laporan ke dalam database
+    Laporan::create([
+        'petugas_id' => $petugas_id,
+        'tgl_kunjungan' => $request->tgl_kunjungan,
+        'mdd_ci' => $request->mdd_ci,
+        'priode_id' => $request->priode_id,
+        'map' => $request->map,
+        'tgl_ci' => $priode_tgl->tgl_mulai,
+        'pop_e' => $request->pop_e,
+        'bw_doc' => $request->bw_doc,
+        'doc' => $request->doc,
+        'jenis_pakan' => $request->jenis_pakan,
+        'tkp_sak' => $request->tkp_sak,
+        'sp_sak' => $request->sp_sak,
+        'terpakai' => $request->terpakai,
+        'umur' => $umur,
+        'mor_e' => $request->mor_e,
+        'mor' => $request->mor,
+        'ayam_hidup' => $request->ayam_hidup,
+        'bw' => $request->bw,
+        'fi' => $request->fi,
+        'act_fcr' => $request->act_fcr,
+        'std_fcr' => $request->std_fcr,
+        'dif' => $request->dif,
+        'pbbh' => $request->pbbh,
+        'std_pbbh' => $request->std_pbbh,
+        'progres' => $request->progres,
+        'ep' => $request->ep,
+        'std_eph' => $request->std_eph,
+        'progres2' => $request->progres2,
+        'suhu' => $request->suhu,
+        'rh' => $request->rh,
+        'hi' => $request->hi,
+        'kepadatan' => $request->kepadatan,
+        'tra' => $request->tra,
+        'tma' => $request->tma,
+        'treatment_ovk' => $request->treatment_ovk,
+        'kondisi' => $request->kondisi,
+        'saran' => $request->saran,
+    ]);
+
+    return redirect()->route('laporan.show', $request->priode_id)
+        ->with('success', 'Laporan berhasil ditambahkan');
 }
 // public function edit(laporan $laporan, $id):View
 //     { //dd($laporan);
@@ -173,9 +196,10 @@ public function edit($id)
 {
     $validator = Validator::make($request->all(), [
         'petugas_id' => 'required',
+        'tgl_kunjungan' => 'required',
         'mdd_ci' => 'required',
         'priode_id' => 'required',
-        'tgl_ci' => 'required',
+        //'tgl_ci' => 'required',
         'pop_e' => 'required',
         'bw_doc' => 'required',
         'doc' => 'required',
@@ -214,13 +238,16 @@ public function edit($id)
     }
 
     $laporan = Laporan::findOrFail($id);
-
+    $priode_tgl=priode::find($request->priode_id);
+    //$priode_tgl=$request->priode_id;
+   // dd($priode_tgl->tgl_mulai);
     $laporan->update([
         'petugas_id' => Auth::id(),
+        'tgl_kunjungan' => $request->tgl_kunjungan,
         'mdd_ci' => $request->mdd_ci,
         'priode_id' => $request->priode_id,
         'map' => $request->map,
-        'tgl_ci' => $request->tgl_ci,
+        'tgl_ci' => $priode_tgl->tgl_mulai,
         'pop_e' => $request->pop_e,
         'bw_doc' => $request->bw_doc,
         'doc' => $request->doc,

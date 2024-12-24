@@ -37,7 +37,7 @@
                         <span class="dropdown-item dropdown-header">User Menu</span>
                         <div class="dropdown-divider"></div>
                         <a href="{{route('petugas.index')}}" class="dropdown-item">
-                            <i class="fas fa-user mr-2"></i> Profile
+                            <i class="fas fa-user mr-2"></i> kembali
                         </a>
                         <div class="dropdown-divider"></div>
                         <form action="logout" method="POST">
@@ -89,7 +89,7 @@
                                 class="nav-link ">
                                 <i class="nav-icon fas fa-user mr-2"></i>
                                 <p>
-                                    petugas
+                                    kembali
                                 </p>
                             </a>
                         </li>

@@ -15,7 +15,7 @@
     <div class="card">
         <div class="card-header">
             <h3 class="card-title">Data Laporan</h3>
-            
+
         </div>
         <!-- /.card-header -->
 
@@ -26,6 +26,7 @@
                         <tr>
                             <th>ID Laporan</th>
                             <th>Petugas ID</th>
+                            <th>tgl kunjungan</th>
                             <th>MDD CI</th>
                             <th>Priode Peternakan</th>
                             <th>Tgl CI</th>
@@ -67,6 +68,7 @@
                             <tr>
                                 <td>{{ $dt->id }}</td>
                                 <td>{{ $dt->petugas_id }}</td>
+                                <td>{{ $dt->tgl_kunjungan }}</td>
                                 <td>{{ $dt->mdd_ci }}</td>
                                 <td>{{ $dt->priode_id }}</td>
                                 <td>{{ $dt->tgl_ci }}</td>
