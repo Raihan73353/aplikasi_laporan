@@ -28,6 +28,9 @@
                         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right" aria-labelledby="navbarDropdown">
                             <span class="dropdown-item dropdown-header">User Menu</span>
                             <div class="dropdown-divider"></div>
+                            <a href="{{ route('select.select') }}" class="dropdown-item">
+                                <i class="fa-solid fa-tractor"></i>   masuk
+                            </a>
                             <a href="{{ route('password.edit', Auth::user()->id) }}" class="dropdown-item">
                                 <i class="fas fa-key mr-2"></i> Ubah Password
                             </a>

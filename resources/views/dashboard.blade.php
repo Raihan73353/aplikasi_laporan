@@ -12,7 +12,7 @@
                 <p>Total peternakan</p>
             </div>
             <div class="icon">
-                <i class="fas fa-chalkboard-teacher"></i>
+                <i class="fa-solid fa-seedling"></i>
             </div>
             <a href="{{ route('peternakan.index') }}" class="small-box-footer">
                 Lihat Data <i class="fas fa-arrow-circle-right"></i>
@@ -35,21 +35,21 @@
         </div>
     </div>
 
-    {{-- <!-- Fitur 3: Peserta Pelatihan -->
+    <!-- Fitur 3: Peserta Pelatihan -->
     <div class="col-lg-3 col-md-6 col-12 mb-4">
         <div class="small-box bg-warning">
             <div class="inner">
-                <h3>{{ $totallaporan }}</h3>
-                <p>Total Peserta Pelatihan</p>
+                <h3>{{ $totalPetugas }}</h3>
+                <p>petugas</p>
             </div>
             <div class="icon">
                 <i class="fas fa-users"></i>
             </div>
-            <a href="{{ route('select.select') }}" class="small-box-footer">
+            <a href="{{ route('pengguna.index') }}" class="small-box-footer">
                 Lihat Peserta <i class="fas fa-arrow-circle-right"></i>
             </a>
         </div>
-    </div> --}}
+    </div>
 
     <!-- Fitur 4: Laporan -->
     <div class="col-lg-3 col-md-6 col-12 mb-4">

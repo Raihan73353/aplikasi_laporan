@@ -23,7 +23,7 @@ class LoginController extends Controller
         $role = $user->role;
 
         if ($role === 'admin') {
-            return redirect()->intended('/peternakan');
+            return redirect()->intended('/dashboard');
         } elseif ($role === 'petugas') {
             return redirect()->intended('/petugas');
         }

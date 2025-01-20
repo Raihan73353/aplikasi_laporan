@@ -16,7 +16,7 @@
 <div class="col-md-8">
     <div class="card card-info">
         <div class="card-header">
-            <h3 class="card-title">Data Category</h3>
+            <h3 class="card-title">Data user</h3>
             <a type="button" class="btn btn-success float-right" href="{{ route('pengguna.create') }}">
                 <i class=" fas fa-plus"></i>Tambah User
             </a>

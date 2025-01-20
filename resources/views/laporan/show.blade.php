@@ -51,10 +51,11 @@
                     <thead>
                         <tr>
                             <th>ID Laporan</th>
-                            <th>Petugas ID</th>
+                            <th>nama Petugas</th>
                             <th>Tgl Kunjungan</th>
                             <th>MDD CI</th>
-                            <th>Priode Peternakan</th>
+                            <th>Peripde Peternakan</th>
+                            <th>nama Peternakan</th>
                             <th>Tgl CI</th>
                             <th>Pop E</th>
                             <th>BW DOC</th>
@@ -93,10 +94,11 @@
                         @foreach ($data as $dt)
                             <tr>
                                 <td>{{ $dt->id }}</td>
-                                <td>{{ $dt->petugas_id }}</td>
+                                <td>{{ $dt->petugas->name }}</td>
                                 <td>{{ $dt->tgl_kunjungan }}</td>
                                 <td>{{ $dt->mdd_ci }}</td>
                                 <td>{{ $dt->priode_id }}</td>
+                                <td>{{ $dt->periode->peternakan->nama }}</td>
                                 <td>{{ $dt->tgl_ci }}</td>
                                 <td>{{ $dt->pop_e }}</td>
                                 <td>{{ $dt->bw_doc }}</td>

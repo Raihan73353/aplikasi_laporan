@@ -13,12 +13,14 @@ class DashboardController extends Controller
     public function index()
     {
         $totalpeternakan = peternakan::count();
-        $totalAdmins = User::all()->count();
+        $totalAdmins = User::where('role', 'admin')->count();
+        $totalPetugas = User::where('role', 'petugas')->count();
         $totallaporan = laporan::count();
         $latestlaporan = laporan::latest()->paginate(5);
         return view('dashboard',[
             'totalpeternakan'=> $totalpeternakan,
             'totalAdmins'=> $totalAdmins,
+            'totalPetugas'=> $totalPetugas,
             'totallaporan'=> $totallaporan,
             'latestlaporan'=> $latestlaporan,
             "title" => "dahsboard",

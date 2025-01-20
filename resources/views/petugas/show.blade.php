@@ -28,7 +28,8 @@
                             <th>Petugas ID</th>
                             <th>tgl kunjungan</th>
                             <th>MDD CI</th>
-                            <th>Priode Peternakan</th>
+                            <th>Peripde Peternakan</th>
+                            <th>nama Peternakan</th>
                             <th>Tgl CI</th>
                             <th>Pop E</th>
                             <th>BW DOC</th>
@@ -72,6 +73,7 @@
                                 <td>{{ $dt->tgl_kunjungan }}</td>
                                 <td>{{ $dt->mdd_ci }}</td>
                                 <td>{{ $dt->priode_id }}</td>
+                                <td>{{ $dt->periode->peternakan->nama }}</td>
                                 <td>{{ $dt->tgl_ci }}</td>
                                 <td>{{ $dt->pop_e }}</td>
                                 <td>{{ $dt->bw_doc }}</td>

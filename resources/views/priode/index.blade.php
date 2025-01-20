@@ -27,7 +27,7 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>id peternakan</th>
+                            <th>nama peternakan</th>
                             <th>tgl mulai</th>
                             <th>tgl akhir</th>
                             <th>aktifitas</th>
@@ -40,7 +40,7 @@
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>
-                                    {{ $dt->id_peternakan }}</td>
+                                    {{ $dt->peternakan->nama }}</td>
                                 <td>
                                     {{ $dt->tgl_mulai }}</td>
                                 <td>
@@ -62,7 +62,7 @@
                                             </button>
 
                                         </form>
-                                        
+
                                     </div>
 
 

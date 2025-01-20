@@ -46,7 +46,7 @@
                 </div>
                 <div class="form-group">
                     <label for="role">role</label><br>
-                     <input type="radio" name="role" value="petugas"/><b>admin</b>
+                     <input type="radio" name="role" value="admin"/><b>admin</b>
                      <input type="radio" name="role" value="petugas"/><b>petugas</b>
                 </div>
 

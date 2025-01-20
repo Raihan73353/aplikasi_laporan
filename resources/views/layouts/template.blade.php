@@ -7,6 +7,7 @@
     <title>{{ $title }}</title>
 
     <!-- Google Font: Source Sans Pro -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome Icons -->
@@ -93,20 +94,20 @@
                         <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
 
-                        {{-- <li class="nav-item">
-                            <a href="/" class="nav-link {{ ($title==='Dashboard')?'active':'' }}">
+                        <li class="nav-item">
+                            <a href="/dashboard" class="nav-link {{ ($title==='dahsboard')?'active':'' }}">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>
                                     Dashboard
 
                                 </p>
                             </a>
-                        </li> --}}
+                        </li>
                         <li class="nav-item">
                             {{-- <a href="{{ route('kategori.index')}}" --}}
                             <a href="{{ route('peternakan.index') }}"
                                 class="nav-link {{ $title === 'peternakan' ? 'active' : '' }}">
-                                <i class="nav-icon fas fa-th-large"></i>
+                                <i class="fa-solid fa-tractor"></i>
                                 <p>
                                     peternakan
                                 </p>
