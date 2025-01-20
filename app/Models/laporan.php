@@ -47,14 +47,21 @@ class laporan extends Model
         'kondisi',
         'saran'
     ];
-    // public function petugas()
+    public function petugas()
+    {
+        return $this->belongsTo(User::class, 'petugas_id');
+    }
+    // public function priode()
     // {
-    //     return $this->belongsTo(petuga::class, 'petugas_id');
+    //     return $this->belongsTo(priode::class, 'priode_id');
     // }
-
+    public function periode()
+    {
+        return $this->belongsTo(priode::class, 'priode_id');
+    }
     public function priode()
     {
-        // return $this->belongsTo(priode::class, 'peternakan_id');
+        //return $this->belongsTo(priode::class, 'peternakan_id');
         return $this->join('priode', 'laporan.priode_id', '=', 'priode.id')
                     ->select('laporan.*', 'priode.id');
     }

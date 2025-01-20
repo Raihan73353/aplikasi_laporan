@@ -6,6 +6,14 @@
     <link rel="stylesheet" href="plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
     <!-- Toastr -->
     <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css">
+
+    <!-- Custom CSS for Word Wrap -->
+    <style>
+        table.dataTable td {
+            white-space: normal; /* Membungkus teks panjang */
+            word-wrap: break-word; /* Memastikan kata panjang dibungkus */
+        }
+    </style>
 @endsection
 
 @section('judulh1', 'Admin - Laporan')
@@ -127,7 +135,7 @@
 @endsection
 
 @section('tambahanJS')
-    <!-- DataTables  & Plugins -->
+    <!-- DataTables & Plugins -->
     <script src="plugins/datatables/jquery.dataTables.min.js"></script>
     <script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
     <script src="plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
@@ -151,7 +159,15 @@
                 "responsive": true,
                 "lengthChange": true,
                 "autoWidth": false,
-                "responsive": true,
+                "scrollX": true, // Menambahkan scroll horizontal
+                "columnDefs": [
+                    {
+                        "targets": "_all", // Terapkan ke semua kolom
+                        "render": function(data, type, row) {
+                            return '<div style="white-space: normal;">' + data + '</div>';
+                        }
+                    }
+                ],
             }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
         });
 

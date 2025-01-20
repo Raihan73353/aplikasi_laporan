@@ -1,5 +1,5 @@
 @extends('layouts.petugass')
-@section('judulh1', 'Admin - Peternakan')
+@section('judulh1', 'petugas - laporan')
 
 @section('konten')
 <div class="col-md-6">

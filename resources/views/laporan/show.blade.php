@@ -7,6 +7,33 @@
     <link rel="stylesheet" href="{{ asset('plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
     <!-- Toastr -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
+    <!-- Custom CSS for Word Wrap and Print -->
+    <style>
+        /* Membungkus teks panjang */
+        table.dataTable td {
+            white-space: normal;
+            word-wrap: break-word;
+        }
+
+        /* Optimasi untuk mode print */
+        @media print {
+            body {
+                font-size: 12px;
+                margin: 0;
+                padding: 0;
+            }
+            table {
+                width: 100%;
+                border-collapse: collapse;
+            }
+            table td, table th {
+                font-size: 10px;
+                white-space: normal !important;
+                word-wrap: break-word !important;
+            }
+        }
+    </style>
 @endsection
 
 @section('judulh1', 'Admin - Laporan')
@@ -15,7 +42,6 @@
     <div class="card">
         <div class="card-header">
             <h3 class="card-title">Data Laporan</h3>
-
         </div>
         <!-- /.card-header -->
 
@@ -26,7 +52,7 @@
                         <tr>
                             <th>ID Laporan</th>
                             <th>Petugas ID</th>
-                            <th>tgl kunjungan</th>
+                            <th>Tgl Kunjungan</th>
                             <th>MDD CI</th>
                             <th>Priode Peternakan</th>
                             <th>Tgl CI</th>
@@ -139,8 +165,32 @@
                 "responsive": true,
                 "lengthChange": true,
                 "autoWidth": false,
-                "responsive": true,
-                "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+                "scrollX": true,
+                "buttons": [
+                    "copy",
+                    "csv",
+                    "excel",
+                    {
+                        extend: "print",
+                        text: "Print",
+                        exportOptions: {
+                            columns: ':visible',
+                        },
+                        customize: function (win) {
+                            $(win.document.body).css('font-size', '10px');
+                            $(win.document.body).find('table').addClass('compact').css('font-size', 'inherit');
+                        }
+                    },
+                    "colvis"
+                ],
+                "columnDefs": [
+                    {
+                        targets: "_all",
+                        render: function(data, type, row) {
+                            return '<div style="white-space: normal;">' + data + '</div>';
+                        }
+                    }
+                ]
             }).buttons().container().appendTo('#example2_wrapper .col-md-6:eq(0)');
 
             @if ($message = Session::get('success'))

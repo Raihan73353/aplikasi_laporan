@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 @endsection
 
-@section('judulh1', 'Admin - Laporan')
+@section('judulh1', 'petugas - Laporan')
 
 @section('konten')
     <div class="card">

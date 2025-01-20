@@ -6,6 +6,7 @@ use App\Http\Controllers\petugasController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\priodeController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\fcrController;
 use App\Http\Controllers\pbbhController;
 use Illuminate\Support\Facades\Route;
@@ -60,3 +61,4 @@ Route::get('laporan/create1/{priode_id}', [LaporanController::class, 'create'])-
 Route::get('laporan/create/{priode_id}', inputData::class)->name('laporan.create')->middleware('auth');
 // Route::get('export-laporan', function () {
 //     return Excel::download(new LaporanExport, 'laporan.xlsx');
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('auth');

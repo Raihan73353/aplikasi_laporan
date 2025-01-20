@@ -22,4 +22,5 @@ class priode extends Model
     {
         return $this->belongsTo(peternakan::class, 'id_peternakan');
     }
+
 }

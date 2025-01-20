@@ -18,7 +18,9 @@ return new class extends Migration
             $table->date('tgl_akhir');
             $table->enum('aktif', ['on', 'of'])->default('on');
             $table->timestamps();
-            $table->foreign('id_peternakan')->references('id')->on('peternakans')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('id_peternakan')->references('id')
+            ->on('peternakans')->onUpdate('cascade')
+            ->onDelete('cascade');
 
         });
 
