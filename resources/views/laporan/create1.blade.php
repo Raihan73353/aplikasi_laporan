@@ -36,8 +36,8 @@
                                 <input type="date" class="form-control" id="tgl_kunjungan" name="tgl_kunjungan" required>
                             </div>
                             <div class="form-group">
-                                <label for="petugas_id">peternakan ID</label>
-                                <input type="text" class="form-control" id="priode_id" name="priode_id"
+                                {{-- <label for="petugas_id">peternakan ID</label> --}}
+                                <input type="hidden" class="form-control" id="priode_id" name="priode_id"
                                     value="{{ $priode_id }}" readonly required>
                             </div>
                             <div class="form-group">
