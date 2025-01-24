@@ -12,6 +12,7 @@ class priode extends Model
         'id_peternakan',
         'tgl_mulai',
         'tgl_akhir',
+        'pop_e',
         'aktif'
     ];
     public function laporans()

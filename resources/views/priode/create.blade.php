@@ -25,8 +25,8 @@
 
             <div class=" card-body">
                 <div class="form-group">
-                    <label for="id_peternakan">peternakan</label>
-                    <input type="text" class="form-control" id="id_peternakan" name="id_peternakan" placeholder="" value="{{$id_peternakan}}">
+                    {{-- <label for="id_peternakan">peternakan</label> --}}
+                    <input type="hidden" class="form-control" id="id_peternakan" name="id_peternakan" placeholder="" value="{{$id_peternakan}}">
                 </div>
                 <div class="form-group">
                     <label for="tgl_mulai">tanggal mulai Peternakan</label>
@@ -37,7 +37,10 @@
                     <input type="date" class="form-control" id="tgl_akhir" name="tgl_akhir">
                 </div>
 
-
+                <div class="form-group">
+                    <label for="pop_e">Pop E</label>
+                    <input type="number" class="form-control" id="pop_e" name="pop_e" required>
+                </div>
                 <div class="form-group">
                     {{-- <label for="aktif">aktif</label>
                     <input type="text" class="form-control" id="aktif" name="aktif"> --}}

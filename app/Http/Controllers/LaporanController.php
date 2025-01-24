@@ -68,11 +68,13 @@ class LaporanController extends Controller
     public function create($id){
         $tgl=priode::find($id);
         $data=$tgl->tgl_mulai;
+        $pop=$tgl->pop_e;
         //dd($data);
         return view('laporan.create1', [
             "title" => "Tambah Laporan",
             "priode_id" => $id,
-            "tgl"=>$data
+            "tgl"=>$data,
+            "pop"=>$pop
         ]);
     }
 
@@ -125,6 +127,9 @@ class LaporanController extends Controller
     // Ambil data periode berdasarkan priod_id
     $priode_tgl = priode::find($request->priode_id);
 
+    $priode = Priode::findOrFail($request->priode_id);
+    $priode->pop_e = $request->ayam_hidup;
+    $priode->save();
     // Ambil id petugas yang sedang login
     $petugas_id = Auth::id();
 
@@ -236,6 +241,10 @@ public function edit($id)
     if ($validator->fails()) {
         return redirect()->back()->withErrors($validator)->withInput();
     }
+    $priode = Priode::findOrFail($request->priode_id);
+    $priode->pop_e = $request->ayam_hidup;
+
+    $priode->save();
 
     $laporan = Laporan::findOrFail($id);
     $priode_tgl=priode::find($request->priode_id);

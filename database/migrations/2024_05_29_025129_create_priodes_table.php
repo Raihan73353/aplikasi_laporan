@@ -16,6 +16,7 @@ return new class extends Migration
             $table->bigInteger('id_peternakan')->unsigned();
             $table->date('tgl_mulai');
             $table->date('tgl_akhir');
+            $table->integer('pop_e');
             $table->enum('aktif', ['on', 'of'])->default('on');
             $table->timestamps();
             $table->foreign('id_peternakan')->references('id')

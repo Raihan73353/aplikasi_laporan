@@ -30,6 +30,7 @@
                             <th>nama peternakan</th>
                             <th>tgl mulai</th>
                             <th>tgl akhir</th>
+                            <th>pop e</th>
                             <th>aktifitas</th>
                             <th>Aksi</th>
                         </tr>
@@ -45,6 +46,8 @@
                                     {{ $dt->tgl_mulai }}</td>
                                 <td>
                                     {{ $dt->tgl_akhir }}</td>
+                                <td>
+                                    {{ $dt->pop_e }}</td>
                                 <td>
                                     {{ $dt->aktif }}</td>
                                     <td>

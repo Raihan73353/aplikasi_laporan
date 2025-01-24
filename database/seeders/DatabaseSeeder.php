@@ -14,7 +14,8 @@ class DatabaseSeeder extends Seeder
     {
       $this->call([
         fcr::class,
-        pbbh::class
+        pbbh::class,
+        user::class
       ]);
     }
 }

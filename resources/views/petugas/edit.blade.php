@@ -55,7 +55,7 @@
                             <div class="form-group">
                                 <label for="pop_e">Pop E</label>
                                 <input type="number" class="form-control" id="pop_e" name="pop_e"
-                                    value="{{ $laporan->pop_e }}" required>
+                                    value="{{ $laporan->pop_e }}" readonly required>
                             </div>
                             <div class="form-group">
                                 <label for="bw_doc">BW DOC</label>

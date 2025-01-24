@@ -30,6 +30,7 @@ class priodeController extends Controller
             "id_peternakan"=>"required",
             "tgl_mulai"=>"nullable",
             "tgl_akhir"=>"required",
+            'pop_e' => 'required',
             "aktif"=>"required",
 
         ]);
