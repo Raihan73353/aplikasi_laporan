@@ -11,9 +11,7 @@ use App\Http\Controllers\fcrController;
 use App\Http\Controllers\pbbhController;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\inputData;
-use App\Http\Controllers\ExportController;
-use App\Exports\LaporanExport;
-use Maatwebsite\Excel\Facades\Excel;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -58,7 +56,7 @@ Route::put('/laporan/{id}', [LaporanController::class, 'update'])->name('laporan
 
 
 Route::get('laporan/create1/{priode_id}', [LaporanController::class, 'create'])->name('laporan.create1')->middleware('auth');
-Route::get('laporan/create/{priode_id}', inputData::class)->name('laporan.create')->middleware('auth');
+// Route::get('laporan/create/{priode_id}', inputData::class)->name('laporan.create')->middleware('auth');
 // Route::get('export-laporan', function () {
 //     return Excel::download(new LaporanExport, 'laporan.xlsx');
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
