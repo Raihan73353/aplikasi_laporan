@@ -54,7 +54,7 @@
                             <th>nama Petugas</th>
                             <th>Tgl Kunjungan</th>
                             <th>MDD CI</th>
-                            <th>Peripde Peternakan</th>
+                            <th>Periode Peternakan</th>
                             <th>nama Peternakan</th>
                             <th>Tgl CI</th>
                             <th>Pop E</th>
