@@ -107,9 +107,9 @@
                             {{-- <a href="{{ route('kategori.index')}}" --}}
                             <a href="{{ route('peternakan.index') }}"
                                 class="nav-link {{ $title === 'peternakan' ? 'active' : '' }}">
-                                <i class="fa-solid fa-tractor"></i>
+                                <i class="nav-icon fas fa-solid fa-tractor"></i>
                                 <p>
-                                     peternakan
+                                    Peternakan
                                 </p>
                             </a>
                         </li>
@@ -118,7 +118,7 @@
                                 class="nav-link {{ $title === 'priode' ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>
-                                    priode
+                                    Periode
 
                                 </p>
                             </a>
@@ -147,7 +147,7 @@
                                 class="nav-link {{ $title === 'laporan' ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-cash-register"></i>
                                 <p>
-                                    laporan
+                                    Laporan
                                 </p>
                             </a>
                         </li>
