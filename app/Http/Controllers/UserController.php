@@ -12,31 +12,34 @@ use Illuminate\Support\Facades\Auth;
 class UserController extends Controller
 {
     //
-    public function index(){
-        return view('user.index',[
-            "title"=>"Data Pengguna",
-            "data"=>User::all()
+    public function index()
+    {
+        return view('user.index', [
+            "title" => "Data Pengguna",
+            "data" => User::all()
         ]);
     }
-    public function create():View{
-        return view('user.tambah')->with((["title"=> "Tambah data user"]));
-            }
+    public function create(): View
+    {
+        return view('user.tambah')->with((["title" => "Tambah data user"]));
+    }
 
-    public function store(Request $request):RedirectResponse{
+    public function store(Request $request): RedirectResponse
+    {
         $request->validate([
-            "name"=>"required",
-            "email"=>"required",
-            "username"=>"required",
-            "role"=>"required",
-            "password"=>"required"
+            "name" => "required",
+            "email" => "required",
+            "username" => "required",
+            "role" => "required",
+            "password" => "required"
         ]);
-        $password=Hash::make($request->password);
+        $password = Hash::make($request->password);
         $request->merge([
-            "password"=>$password
+            "password" => $password
         ]);
         User::create($request->all());
 
-        return redirect()->route('pengguna.index')->with('success','Data User Berhasil Ditambahkan');
+        return redirect()->route('pengguna.index')->with('success', 'Data User Berhasil Ditambahkan');
     }
     public function edit(User $user): View
     {
@@ -47,19 +50,27 @@ class UserController extends Controller
 
     public function update(Request $request, User $user): RedirectResponse
     {
-        $request->validate([
-            'password' => 'required',
-        ]);
-        $password=Hash::make($request->password);
-        $request->merge([
-            "password"=>$password
-        ]);
-        $user->update($request->only(['password']));
-
         $loginRole = Auth::user()->role;
         if ($loginRole == 'admin') {
+            $request->validate([
+                'password' => 'required',
+                'role' => 'required',
+            ]);
+            $password = Hash::make($request->password);
+            $request->merge([
+                "password" => $password
+            ]);
+            $user->update($request->only(['password', 'role']));
             return redirect()->route('user.index')->with('updated', 'Data Pengguna Berhasil Diubah');
         } else {
+            $request->validate([
+                'password' => 'required',
+            ]);
+            $password = Hash::make($request->password);
+            $request->merge([
+                "password" => $password
+            ]);
+            $user->update($request->only(['password']));
             return redirect()->route('petugas.index')->with('updated', 'Data Pengguna Berhasil Diubah');
         }
     }

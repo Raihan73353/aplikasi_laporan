@@ -10,7 +10,16 @@
         .content {
             margin-top: 30px;
         }
-    </style>
+        .peternakan {
+            margin-bottom: 20px;
+        }
+        .button-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        </style>
 </head>
 <body>
     <nav class="navbar navbar-expand-md navbar-light bg-light">
@@ -29,7 +38,7 @@
                             <span class="dropdown-item dropdown-header">User Menu</span>
                             <div class="dropdown-divider"></div>
                             <a href="{{ route('select.select') }}" class="dropdown-item">
-                                <i class="fa-solid fa-tractor"></i>   masuk
+                                <i class="fa-solid fa-tractor mr-2"></i>masuk
                             </a>
                             <a href="{{ route('password.edit', Auth::user()->id) }}" class="dropdown-item">
                                 <i class="fas fa-key mr-2"></i> Ubah Password
@@ -65,8 +74,9 @@
                 </div>
                 <div class="card-body">
                     @foreach ($data as $peternakan)
-                        <div class="peternakan">
-                            <h4>Nama Peternakan: {{ $peternakan->nama }}</h4>
+                    <div class="peternakan">
+                        <h4>Nama Peternakan: {{ $peternakan->nama }}</h4>
+                        <div class="button-container">
                             @foreach ($periode as $p)
                                 @if ($p->id_peternakan == $peternakan->id)
                                     <a href="{{ route('laporan.create1', $p->id) }}" class="btn btn-warning">
@@ -75,7 +85,8 @@
                                 @endif
                             @endforeach
                         </div>
-                    @endforeach
+                    </div>
+                @endforeach
                 </div>
             </div>
         </div>

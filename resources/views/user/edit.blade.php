@@ -30,8 +30,14 @@
                 </div>
                 <div class="form-group">
                     <label for="password">password</label>
-                    <input type="text" name="password" class="form-control" id="password" value="" required>
+                    <input type="password" name="password" class="form-control" id="password" value="" required>
                 </div>
+                <div class="form-group">
+                    <label for="role">Role</label><br>
+                    <input type="radio" name="role" value="admin" {{ $user->role == 'admin' ? 'checked' : '' }}> <b>Admin</b>
+                    <input type="radio" name="role" value="petugas" {{ $user->role == 'petugas' ? 'checked' : '' }}> <b>Petugas</b>
+                </div>
+
             </div>
             <!-- /.card-body -->
 

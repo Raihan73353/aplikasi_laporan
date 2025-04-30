@@ -109,7 +109,7 @@
                                 class="nav-link {{ $title === 'peternakan' ? 'active' : '' }}">
                                 <i class="fa-solid fa-tractor"></i>
                                 <p>
-                                    peternakan
+                                     peternakan
                                 </p>
                             </a>
                         </li>
