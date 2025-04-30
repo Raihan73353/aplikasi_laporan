@@ -64,7 +64,7 @@
                                         <div class="btn-group ml-2">
                                             <a type="button" class="btn btn-warning"
                                                 href="{{ route('priode.create', $dt->id) }}">
-                                                + priode
+                                                + periode
                                             </a>
 
                                         </div>

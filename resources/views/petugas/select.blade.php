@@ -37,7 +37,7 @@
                     @foreach ($priode as $p)
                     @if ($p->id_peternakan == $peternakan->id)
                         <a type="button" class="btn btn-warning" href="{{ route('laporan.show', $p->id) }}">
-                            + Laporan (Priode ID: {{ $p->id }})
+                            + Laporan (Periode ID: {{ $p->id }})
                         </a>
                     @endif
                 @endforeach

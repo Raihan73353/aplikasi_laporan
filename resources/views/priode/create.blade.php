@@ -16,7 +16,7 @@
 
     <div class="card card-success">
         <div class="card-header">
-            <h3 class="card-title">Tambah Data priode</h3>
+            <h3 class="card-title">Tambah Data periode</h3>
         </div>
         <!-- /.card-header -->
         <!-- form start -->

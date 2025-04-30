@@ -36,7 +36,7 @@
                             <th>No</th>
                             <th>Petugas ID</th>
                             <th>MDD CI</th>
-                            <th>priode peternakan</th>
+                            <th>periode peternakan</th>
                             <th>Tgl CI</th>
                             <th>Pop E</th>
                             <th>BW DOC</th>

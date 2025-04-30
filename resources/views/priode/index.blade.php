@@ -17,7 +17,7 @@
     <div class="col-md-12">
         <div class="card card-info">
             <div class="card-header">
-                <h2 class="card-title">Data priode peternakan</h2>
+                <h2 class="card-title">Data periode peternakan</h2>
 
             </div>
             <!-- /.card-header -->
