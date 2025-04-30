@@ -101,16 +101,16 @@
                                 class="nav-link ">
                                 <i class="nav-icon fas fa-user mr-2"></i>
                                 <p>
-                                    kembali
+                                Kembali
                                 </p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('select.select') }}"
                                 class="nav-link ">
-                                <i class="nav-icon fas fa-cash-register"></i>
+                                <i class="nav-icon fas fa-cash-register mr-2"></i>
                                 <p>
-                                    laporan
+                                Laporan
                                 </p>
                             </a>
                         </li>
